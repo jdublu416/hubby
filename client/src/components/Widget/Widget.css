@@ -2,7 +2,7 @@
     background-color: aqua;
     padding: 1.5em;
     margin: 1.5em;
-    width: 12em;
-    height: 12em;
     border-radius: 15%;
+    height: 100%;
+    width: 100%;
 }
