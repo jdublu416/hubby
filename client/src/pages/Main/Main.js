@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Widget from "../../components/Widget";
 
 
-class Home extends Component {
+class Main extends Component {
 
     state = {
 
