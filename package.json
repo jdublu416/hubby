@@ -1,0 +1,8 @@
+{
+  "name": "hubby",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/FrTime/hubby.git",
+  "author": "Jdublu",
+  "license": "MIT"
+}
