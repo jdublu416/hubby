@@ -1,0 +1,8 @@
+.widget{
+    background-color: aqua;
+    padding: 1.5em;
+    margin: 1.5em;
+    border-radius: 15%;
+    height: 100%;
+    width: 100%;
+}
