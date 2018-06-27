@@ -1,6 +1,8 @@
 import "./Widget.css";
 import React, { Component } from 'react'
 import Rnd from "react-rnd";
+import WeatherAPI from "../WeatherAPI";
+
 const movable = document.querySelector('#movable-box');
 
 export default class Widget extends Component {
@@ -35,13 +37,8 @@ export default class Widget extends Component {
                     }}
                 >
                     <div className="widget">
-                        {/* <img src="http://www.funnyordie.com/thumbnails/576e2b3db6/fullsize" /> */}
-                        <h1
-                            style={{ opacity: 1, }}
-                        >
-                            Test Porps
-                            </h1>
-                        <p>this widget takes you to google</p>
+                        < WeatherAPI />
+
                     </div>
                 </Rnd>
         )

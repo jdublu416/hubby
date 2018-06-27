@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 // import Interactable from "../../components/Interactable";
+import WeatherAPI from "../../components/WeatherAPI";
 import Widget from "../../components/Widget";
 import "./Home.css";
 
 class Home extends Component {
 
     state = {
-
+        
     };
 
 
@@ -17,7 +18,7 @@ class Home extends Component {
             <React.Fragment className="back">
 
                     <img src="https://placeimg.com/1000/500/arch" />
-                    <Widget />
+                    <Widget widgetType={WeatherAPI}/>
 
                     <i className="material-icons">mail_outline</i>
 
