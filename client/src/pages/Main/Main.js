@@ -1,20 +1,25 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 // import Interactable from "../../components/Interactable";
+
 import WeatherAPI from "../../components/WeatherAPI";
 import Widget from "../../components/Widget";
 import Calendar from "react-calendar";
 import "./Main.css";
 
+
 class Main extends Component {
 
     state = {
+
         activeWidgets: [WeatherAPI, Calendar],
+
     };
 
 
 
     render() {
+
         return (
             <div className="back" style={{backgroundColor: "grey",}}>
 
@@ -52,8 +57,10 @@ class Main extends Component {
                     </div>
 
             </div>
+
         )
     }
 }
 
 export default Main;
+
