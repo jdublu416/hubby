@@ -2,7 +2,8 @@
 
     position: relative;
     bottom: 0px;
-    background-color: rgba(187,187,187,0.75);
+    color: #fff;
+    background-color: rgba(20, 20, 20, 0.66);
     border-radius: 5%;
     overflow: hidden;
     min-width: 100px;
@@ -11,7 +12,7 @@ margin: 0 auto;
 padding: 0;
 height: 100%;
 width: 100%;
-border: 2px solid black;
+border: 2px solid rgb(25, 25, 25);
 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
 }

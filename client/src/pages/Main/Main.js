@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import WeatherAPI from "../../components/WeatherAPI";
 import Widget from "../../components/Widget";
 import Calendar from "react-calendar";
-import "./Home.css";
+import "./Main.css";
 
-class Home extends Component {
+class Main extends Component {
 
     state = {
         activeWidgets: [WeatherAPI, Calendar],
@@ -16,7 +16,7 @@ class Home extends Component {
 
     render() {
         return (
-            <React.Fragment className="back">
+            <div className="back" style={{backgroundColor: "grey",}}>
 
                     {/* <img src="https://placeimg.com/1000/500/arch" /> */}
 
@@ -51,9 +51,9 @@ class Home extends Component {
                         </ul>
                     </div>
 
-            </React.Fragment>
+            </div>
         )
     }
 }
 
-export default Home;
+export default Main;
