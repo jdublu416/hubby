@@ -8,7 +8,7 @@ import "./Home.css";
 class Home extends Component {
 
     state = {
-        
+
     };
 
 
@@ -17,7 +17,7 @@ class Home extends Component {
         return (
             <React.Fragment className="back">
 
-                    <img src="https://placeimg.com/1000/500/arch" />
+                    {/* <img src="https://placeimg.com/1000/500/arch" /> */}
                     <Widget widgetType={WeatherAPI}/>
 
                     <i className="material-icons">mail_outline</i>

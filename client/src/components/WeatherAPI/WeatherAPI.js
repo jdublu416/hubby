@@ -46,11 +46,13 @@ export default class WeatherAPI extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <h1 id="current-temp"> {this.state.temp} &deg;F</h1>
-                <h2 id="condition"> {this.state.condition} </h2>
-                <p id="high-temp"> High : {this.state.high} &deg;F</p>
-                <p id="low-temp"> Low: {this.state.low} &deg;F</p>
+            <React.Fragment >
+                {/* image src is hard coded to help test the appearance */}
+                <img src="http://www.iconarchive.com/download/i89287/icons8/ios7/Weather-Partly-Cloudy-Rain.ico"  style={{maxHeight: "35%", maxWidth: "35%", margin: "5% 5% 0% 5%", border: "1px solid black"}}/>
+                <h1 id="current-temp " style={{textAlign: "center", fontSize: 36, margin: "5% 5% 0% 5%", padding: ".25em",  border: "1px solid black", float: "right", maxWidth: "35%"}}> {this.state.temp} &deg;F</h1>
+                <h2 id="condition"  style={{textAlign: "left", marginLeft: "5%"}}> {this.state.condition} </h2>
+                <p id="high-temp" style={{ float: "left", padding: "0 1em",}}> High : {this.state.high} &deg;F</p>
+                <p id="low-temp" style ={{ float: "right",padding: "0 1em",}}> Low: {this.state.low} &deg;F</p>
             </React.Fragment>
         )
     }
