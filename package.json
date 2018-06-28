@@ -1,7 +1,7 @@
 {
   "name": "hubby",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FrTime/hubby.git"
@@ -9,7 +9,14 @@
   "author": "Jdublu",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && yarn install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "description": "The aim of this project is to design a hub for use with a smart mirror or other interface.  The user will be able to select a variety of widgets to display information such as weather, traffic, calendar appointments, etc.  The layout/style of the home page can be dynamically changed by the user in order accommodate varying screen types and sizes.",
   "bugs": {
@@ -18,10 +25,13 @@
   "homepage": "https://github.com/FrTime/hubby#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "concurrently": "^3.6.0",
     "express": "^4.16.3",
     "mongoose": "^5.1.7",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react-calendar": "^2.16.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  }
 }
