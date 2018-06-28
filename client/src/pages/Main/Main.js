@@ -9,7 +9,11 @@ import "./Main.css";
 class Main extends Component {
 
     state = {
-        activeWidgets: [WeatherAPI, Calendar],
+        activeWidgets: [ 
+            Calendar,
+            WeatherAPI,
+
+        ],
     };
 
 
