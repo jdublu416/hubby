@@ -8,13 +8,13 @@ const Splash = () => (
   <div>
   <header id="header">
     <div>
-      <h1>Hubby</h1>
+      <h1 id="splashh1">hubby</h1>
     </div>
   </header>
   </div>
 
-  <div className= "container">
-      <a href="/login"><button className="btn btn-default mybtn">Get Started!</button></a>
+  <div className= "section">
+      <a href="/login"><button id="mybtn" className="btn btn-default">Get Started!</button></a>
   </div>
   <footer></footer>
   </div>
