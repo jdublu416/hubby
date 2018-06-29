@@ -4,13 +4,19 @@ import "./Splash.css";
 
 
 const Splash = () => (
-  <div className="container">
+  <div>
+  <div>
+  <header id="header">
     <div>
       <h1>Hubby</h1>
-      <a href="/login">
-      <h2>Get Started!</h2></a>
     </div>
-    
+  </header>
+  </div>
+
+  <div className= "container">
+      <a href="/login"><button className="btn btn-default mybtn">Get Started!</button></a>
+  </div>
+  <footer></footer>
   </div>
 );
 
