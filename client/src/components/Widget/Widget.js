@@ -1,10 +1,10 @@
 import "./Widget.css";
 import React, { Component } from 'react'
 import Rnd from "react-rnd";
-import WeatherAPI from "../WeatherAPI";
-import Calendar from "react-calendar";
+// import WeatherAPI from "../WeatherAPI";
+// import Calendar from "react-calendar";
 
-const movable = document.querySelector('#movable-box');
+// const movable = document.querySelector('#movable-box');
 
 export default class Widget extends Component {
     state = {
