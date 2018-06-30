@@ -11,8 +11,8 @@ export default {
   weatherSearch: function () {
     return axios.get(weatherURL + weatherQuery + weatherApiKey);
   },
-  getArticles: function () {
-    return axios.get("/api/articles");
+  getUser: function () {
+    return axios.get("/api/user");
   },
   // Gets the article with the given id
   getArticlesById: function (id) {

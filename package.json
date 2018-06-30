@@ -2,10 +2,6 @@
   "name": "hubby",
   "version": "1.0.0",
   "main": "server.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FrTime/hubby.git"
-  },
   "author": "Jdublu",
   "license": "MIT",
   "scripts": {
