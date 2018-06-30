@@ -32,25 +32,28 @@ const Login = props => (
           />{" "}
           Remember me
         </label>
-        <button
-          className="btn btn-lg btn-dark btn-block"
-          // type="submit"
-          onClick={this.handleFormSubmit}
-        >
-          Login
-        </button>
+        <a href="/Main">
+          <button
+            className="btn btn-lg btn-dark btn-block"
+            // type="submit"
+            // onClick={props.handleFormSubmit}
+          >
+            Login
+          </button>
+        </a>
         <div className="row">
           <div className="hor-line1 col-md-5" />
           <h5 className="text-center either-or col-md-2"> or </h5>
           <div className="hor-line2 col-md-5" />
         </div>
-        <button
-          className="btn btn-lg btn-dark btn-block"
-          // type="submit"
-          onClick={this.handleFormSubmit}
-        >
-          Register
-        </button>
+        <a href="/register">
+          <button
+            className="btn btn-lg btn-dark btn-block"
+            // type="submit"
+          >
+            Register
+          </button>
+        </a>
       </form>
     </div>
   </div>
