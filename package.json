@@ -22,8 +22,9 @@
   "bugs": {
     "url": "https://github.com/FrTime/hubby/issues"
   },
-  "homepage": "https://github.com/FrTime/hubby#readme",
   "dependencies": {
+    "axios": "^0.18.0",
+    "babel": "^6.23.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "mongoose": "^5.1.7",
