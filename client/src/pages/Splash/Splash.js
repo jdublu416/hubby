@@ -6,9 +6,9 @@ import "./Splash.css";
 const Splash = () => (
   <div>
   <div>
-  <header id="header">
+  <header>
     <div>
-      <h1 id="splashh1">hubby</h1>
+      <h1 id="splashh1">hubby.</h1>
     </div>
   </header>
   </div>

@@ -32,7 +32,7 @@ class Main extends Component {
                 type={this.state.activeWidgets[i]} />)}
                     {/* <Widget widgetType={WeatherAPI}/> */}
 
-                    <i className="material-icons">mail_outline</i>
+                    {/* <i className="material-icons">mail_outline</i>
 
                     <div className="fixed-action-btn">
                         <a className="btn-floating btn-large grey darken-3">
@@ -55,7 +55,7 @@ class Main extends Component {
                 </button>
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
 
             </div>
 

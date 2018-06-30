@@ -1,5 +1,6 @@
 import React from "react";
 import "./Login.css";
+import { Link } from "react-router-dom";
 
 const Login = props => (
   <div className="container">
@@ -32,7 +33,7 @@ const Login = props => (
           />{" "}
           Remember me
         </label>
-        <a href="/Main">
+        <Link to="/Main">
           <button
             className="btn btn-lg btn-dark btn-block"
             // type="submit"
@@ -40,20 +41,20 @@ const Login = props => (
           >
             Login
           </button>
-        </a>
+        </Link>
         <div className="row">
           <div className="hor-line1 col-md-5" />
           <h5 className="text-center either-or col-md-2"> or </h5>
           <div className="hor-line2 col-md-5" />
         </div>
-        <a href="/register">
+        <Link to="/register">
           <button
             className="btn btn-lg btn-dark btn-block"
             // type="submit"
           >
             Register
           </button>
-        </a>
+        </Link>
       </form>
     </div>
   </div>
