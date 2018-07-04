@@ -8,12 +8,20 @@ import Rnd from "react-rnd";
 
 export default class Widget extends Component {
     state = {
-        width: 300,
-        height: 200,
+        width: 400,
+        height: 400,
         x: 100,
         y: 100,
     }
+    handleChange(event) {
+        this.setState({value: event.target.value});
+        console.log("change occured");
+      }
 
+
+    // componentDidMount{
+
+    // }
 
 
     render() {
@@ -26,7 +34,7 @@ export default class Widget extends Component {
                     position={{ x: this.state.x, y: this.state.y }}
                     onDragStop={(e, d) => { this.setState({ x: d.x, y: d.y }) }}
                     bounds={ "window" }
-                    minWidth={ 300 }
+                    minWidth={ 200 }
                     minHeight={ 200 }
                     lockAspectRatio={ true }
                     onResize={(e, direction, ref, delta, position) => {
@@ -39,7 +47,10 @@ export default class Widget extends Component {
                 >
                     <div className="widget">
                         < this.props.type 
-                            />
+                         style={{  
+                            width: this.state.width, 
+                            height: this.state.height}}
+                             />
                     </div>
                 </Rnd>
         )

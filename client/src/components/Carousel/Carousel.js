@@ -1,7 +1,7 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import "./Carousel.css";
-import { start } from 'repl';
+// import { start } from 'repl';
 
 
 <div>
