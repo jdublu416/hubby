@@ -1,9 +1,9 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import "./Carousel.css";
-import { start } from 'repl';
 
 
+export const Carousel = (props) => {
 <div>
  <Carousel.Item>
     <img width={900} height={500} alt="900x500" src="./Images/smartmirrorproject.jpg" />
@@ -34,5 +34,6 @@ import { start } from 'repl';
     </Carousel.Caption>
   </Carousel.Item>
   </div>
+}
 
   
