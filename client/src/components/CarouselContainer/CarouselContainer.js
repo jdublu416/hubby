@@ -1,10 +1,11 @@
 import React from 'react';
-import { Carousel } from 'react-bootstrap';
-import "./Carousel.css";
+import  {Carousel} from 'react-bootstrap';
+import "./CarouselContainer.css";
 
 
-export const Carousel = (props) => {
-<div>
+export const CarouselContainer = () => {
+ 
+<Carousel>
  <Carousel.Item>
     <img width={900} height={500} alt="900x500" src="./Images/smartmirrorproject.jpg" />
     <Carousel.Caption>
@@ -33,7 +34,11 @@ export const Carousel = (props) => {
       <p>Use our site to power any monitor and utilize the endless possibilities. Simple to make your own!</p>
     </Carousel.Caption>
   </Carousel.Item>
-  </div>
+  </Carousel>
+  
+
+  
 }
+
 
   

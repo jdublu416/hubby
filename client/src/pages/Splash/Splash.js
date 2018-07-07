@@ -1,6 +1,7 @@
 import React from "react";
 import "./Splash.css";
-import Carousel from "../../components/Carousel";
+import CarouselContainer from "../../components/CarouselContainer";
+
 
 
 
@@ -13,7 +14,7 @@ const Splash = () => (
     </div>
   </header>
   </div>
-  <Carousel/>
+  <CarouselContainer/>
 
   <div className= "section">
       <a href="/login"><button id="mybtn" className="btn btn-default">Get Started!</button></a>
