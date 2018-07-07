@@ -4,8 +4,9 @@ import Register from "../../components/Register";
 import API from "../../util/API";
 import Main from "../Main";
 import { Link } from "react-router-dom";
+import { withAuth } from '@okta/okta-react';
 
-class LoginHandler extends Component {
+export default withAuth(class LoginHandler extends Component {
   state = {
     password: "",
     email: "",
@@ -65,6 +66,5 @@ class LoginHandler extends Component {
       </div>
     );
   }
-}
+});
 
-export default LoginHandler;
