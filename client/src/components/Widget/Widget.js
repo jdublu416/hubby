@@ -8,15 +8,15 @@ import Rnd from "react-rnd";
 
 export default class Widget extends Component {
     state = {
-        width: 400,
-        height: 400,
+        width: 305,
+        height: 305,
         x: 100,
         y: 100,
     }
-    handleChange(event) {
-        this.setState({value: event.target.value});
-        console.log("change occured");
-      }
+    // handleChange(event) {
+    //     this.setState({value: event.target.value});
+    //     console.log("change occured");
+    //   }
 
 
     // componentDidMount{
