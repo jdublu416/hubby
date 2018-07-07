@@ -7,10 +7,30 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   email: { type: String, required: true },
   date: { type: Date, default: Date.now },
-  devices: {
-    name: { type: String, required: true },
-    settings: { type: Object, required: false }
-  }
+  devices: [{
+    name: String,
+    widgets: {
+      weatherAPI: {
+        zipcode: Number,
+        settings: {
+          x: Number,
+          y: Number,
+          height: Number,
+          Width: Number,
+        },
+      },
+      calendar: {
+        appointments: [String],
+        settings: {
+          x: Number,
+          y: Number,
+          height: Number,
+          Width: Number,
+        },
+      }
+    },
+  },
+  ]
 });
 
 const User = mongoose.model("User", userSchema);
