@@ -2,14 +2,10 @@
   "name": "hubby",
   "version": "1.0.0",
   "main": "server.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FrTime/hubby.git"
-  },
   "author": "Jdublu",
   "license": "MIT",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:prod",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
@@ -23,12 +19,14 @@
     "url": "https://github.com/FrTime/hubby/issues"
   },
   "dependencies": {
+    "@okta/okta-react": "^1.0.2",
     "axios": "^0.18.0",
     "babel": "^6.23.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "mongoose": "^5.1.7",
     "path": "^0.12.7",
+    "react-bootstrap": "^0.32.1",
     "react-calendar": "^2.16.0"
   },
   "devDependencies": {
