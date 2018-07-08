@@ -32,6 +32,10 @@ class Main extends Component {
         console.log(this.state.staticMode)
     }
 
+    saveUserData = () => {
+
+    }
+
     render() {
 
         return (
@@ -44,7 +48,7 @@ class Main extends Component {
                         key={i}
                         type={this.state.activeWidgets[i]}
                         draggable={this.state.staticMode}
-
+                        resizable={(this.state.staticMode == true)? false : true}
                     />
                 )}
                 <Button

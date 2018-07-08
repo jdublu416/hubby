@@ -9,6 +9,7 @@ import API from "../../util/API";
 
 export default class Widget extends Component {
     state = {
+        
         width: 305,
         height: 305,
         x: (window.innerWidth / 3) ,
@@ -16,7 +17,7 @@ export default class Widget extends Component {
     }
 
     componentDidMount() {
- 
+
     }
 
     saveData = (width, height, x, y) => {
@@ -53,13 +54,15 @@ export default class Widget extends Component {
                         });
                     }}
                     disableDragging={this.props.draggable}
-                    
+
                 >
                     <div className="widget">
                         < this.props.type 
                          style={{  
                             width: this.state.width, 
                             height: this.state.height}}
+                            width={this.state.width}
+                            height={this.state.height}
                              />
                     </div>
                 </Rnd>

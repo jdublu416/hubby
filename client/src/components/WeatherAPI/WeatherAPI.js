@@ -10,12 +10,26 @@ export default class WeatherAPI extends Component {
         location: "23220",
         high: 0,
         low: 0,
-
+        width: 200
     }
-    componentDidMount() {
+    componentDidMount(props) {
         this.queryAPI(this.state.location)
+        this.saveData(this.state.width)
 
     }
+
+    saveData = (width) => {
+
+        API.saveUserData({
+            width: width,
+        //   x: x,
+        //   y: y
+        
+        })
+    
+          .then(console.log("saved"))
+          .catch(err => console.log(err));
+      };
 
     queryAPI = query => {
         API.weatherSearch(query)
