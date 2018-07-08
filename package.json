@@ -27,7 +27,8 @@
     "mongoose": "^5.1.7",
     "path": "^0.12.7",
     "react-bootstrap": "^0.32.1",
-    "react-calendar": "^2.16.0"
+    "react-calendar": "^2.16.0",
+    "socket.io": "^2.1.1"
   },
   "devDependencies": {
     "concurrently": "^3.5.0",

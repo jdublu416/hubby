@@ -48,7 +48,14 @@
   <!-- JavaScript at end of body for optimized loading -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js "></script>
   <!-- Import local materialize.js and app.js -->
-
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io.connect('http://localhost');
+    socket.on('news', function (data) {
+      console.log(data);
+      socket.emit('my other event', { my: 'data' });
+    });
+  </script>
   <script type="text/javascript" src="js/app.js"></script>
 </body>
 

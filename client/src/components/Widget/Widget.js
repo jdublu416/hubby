@@ -1,6 +1,7 @@
 import "./Widget.css";
 import React, { Component } from 'react'
 import Rnd from "react-rnd";
+import API from "../../util/API";
 // import WeatherAPI from "../WeatherAPI";
 // import Calendar from "react-calendar";
 
@@ -10,21 +11,28 @@ export default class Widget extends Component {
     state = {
         width: 305,
         height: 305,
-        x: 100,
-        y: 100,
+        x: (window.innerWidth / 3) ,
+        y: (window.innerHeight / 3) ,
     }
-    // handleChange(event) {
-    //     this.setState({value: event.target.value});
-    //     console.log("change occured");
-    //   }
 
+    componentDidMount() {
+ 
+    }
 
-    // componentDidMount{
+    saveData = (width, height, x, y) => {
 
-    // }
+        API.saveUserData({
+          width: width,
+          height: height,
+          x: x,
+          y: y
+        })
+          .then(console.log("saved"))
+          .catch(err => console.log(err));
+      };
 
+    render = props => {
 
-    render() {
         return (
 
                 <Rnd
@@ -44,6 +52,8 @@ export default class Widget extends Component {
                             ...position,
                         });
                     }}
+                    disableDragging={this.props.draggable}
+                    
                 >
                     <div className="widget">
                         < this.props.type 
