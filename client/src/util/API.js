@@ -6,7 +6,7 @@ const weatherApiKey = "&appid=bd0d3906d4a9c29f579ad1a5dd40d33c";
 
 const weatherQuery = "Richmond,US";
 
-// Export an object with a "search" method that searches the Giphy API for the passed query
+
 export default {
   weatherSearch: function () {
     return axios.get(weatherURL + weatherQuery + weatherApiKey);
@@ -15,15 +15,15 @@ export default {
     return axios.get("/api/user");
   },
   // Gets the article with the given id
-  getArticlesById: function (id) {
-    return axios.get("/api/articles/" + id);
+  getUserById: function (id) {
+    return axios.get("/api/user/" + id);
   },
-  // Deletes the article with the given id
-  deleteArticle: function (id) {
-    return axios.delete("/api/articles/" + id);
+  
+  deleteUser: function (id) {
+    return axios.delete("/api/user/" + id);
   },
-  // Saves a article to the database
-  saveArticle: function (articleData) {
-    return axios.post("/api/articles", articleData);
+  // Saves user to the database
+  saveUser: function (UserData) {
+    return axios.post("/api/user", UserData);
   }
 };

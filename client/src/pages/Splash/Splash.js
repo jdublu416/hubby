@@ -11,6 +11,9 @@ const Splash = () => (
   <div>
       <div>
         <header>
+    <div>
+      <a href="/login"><button id="mybtn" className="btn btn-default">Get Started!</button></a>
+    </div>
           <div>
             <h1 id="splashh1">hubby.</h1>
           </div>
@@ -18,9 +21,6 @@ const Splash = () => (
       </div>
   
   <CarouselContainer>
-    <div>
-      <a href="/login"><button id="mybtn" className="btn btn-default">Get Started!</button></a>
-    </div>
     </CarouselContainer>
  
   <footer>

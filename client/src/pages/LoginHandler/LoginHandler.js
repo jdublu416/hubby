@@ -27,6 +27,8 @@ class LoginHandler extends Component {
       alert("these no match yo");
     } else if (this.state.password === this.state.password2) {
       alert("you deed it");
+      this.handleFormSubmit();
+      this.getUser();
     }
   };
 
@@ -34,7 +36,18 @@ class LoginHandler extends Component {
     console.log("whoopsies");
     event.preventDefault();
     // this.getUser();
+    if (this.state.email && this.state.password) {
+      API.saveUser({
+        name: this.state.name,
+        password: this.state.password,
+        email: this.state.email,
+        devices: this.state.devices
+      })
+        .then(res => this.handleRegister())
+        .catch(err => console.log(err));
+    }
   };
+ 
 
   getUser = query => {
     // API.getUser(query);

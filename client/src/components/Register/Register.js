@@ -34,6 +34,7 @@ const Register = props => (
         <button
           className="btn btn-lg btn-dark btn-block"
           onClick={props.handleRegister}
+          href="/Main"
         >
           Register
         </button>
