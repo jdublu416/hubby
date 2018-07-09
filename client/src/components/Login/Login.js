@@ -36,8 +36,8 @@ const Login = props => (
         <Link to="/Main">
           <button
             className="btn btn-lg btn-dark btn-block"
-            // type="submit"
-            // onClick={props.handleFormSubmit}
+            type="submit"
+            onClick={props.handleFormSubmit}
           >
             Login
           </button>
@@ -50,7 +50,7 @@ const Login = props => (
         <Link to="/register">
           <button
             className="btn btn-lg btn-dark btn-block"
-            // type="submit"
+            type="submit"
           >
             Register
           </button>
