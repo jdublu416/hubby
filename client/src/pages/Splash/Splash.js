@@ -11,7 +11,9 @@ const Splash = () => (
   <div>
       <div>
         <header>
-    <div>
+   
+
+  <div className= "section">
       <a href="/login"><button id="mybtn" className="btn btn-default">Get Started!</button></a>
     </div>
           <div>
