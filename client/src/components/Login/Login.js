@@ -35,14 +35,17 @@ const Login = props => (
         </label>
         <Link to="/Main">
           <button
+
             className="btn btn-lg btn-primary btn-block"
           // type="submit"
           // onClick={props.handleFormSubmit}
+           
           >
             Login
           </button>
         </Link>
         <div className="row">
+
           {/* <div className="hor-line1 col-md-5" /> */}
           <h5 className="text-center either-or"> or </h5>
           {/* <div className="hor-line2 col-md-5" /> */}
@@ -51,6 +54,7 @@ const Login = props => (
           <button
             className="btn btn-lg btn-primary btn-block"
           // type="submit"
+
           >
             Register
           </button>
