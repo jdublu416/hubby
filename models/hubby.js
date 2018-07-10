@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   name: { type: String, required: false },
   userName: { type: String, required: false },
-  password: { type: String, required: true },
-  email: { type: String, required: true },
+  password: { type: String, required: false },
+  email: { type: String, required: false },
   date: { type: Date, default: Date.now },
-  devices: [{
+  devices: {
     name: String,
     widgets: {
       weatherAPI: {
@@ -30,22 +30,9 @@ const userSchema = new Schema({
       }
     },
   },
-  ]
+  
 });
 
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
-
-/* For testing porpoises:
-
-  Device settings model
-    settings: {
-      screenRes: {type: Number, required: true},
-      widgets: {
-        WIDGET FILTH HERE
-      }
-    }
-  
-  
-  */
