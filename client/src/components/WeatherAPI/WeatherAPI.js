@@ -3,33 +3,55 @@ import API from "../../util/API.js";
 
 
 export default class WeatherAPI extends Component {
-
-    state = {
-        temp: 0,
-        condition: "",
-        location: "23220",
-        high: 0,
-        low: 0,
-        width: 200
-    }
+    constructor(props) {
+        super(props);
+        this.state = {
+            temp: 0,
+            condition: "",
+            location: "23220",
+            high: 0,
+            low: 0,
+        }
+    };
     componentDidMount(props) {
         this.queryAPI(this.state.location)
-        this.saveData(this.state.width)
+        this.updateData(this.props.width, this.props.height, this.props.x, this.props.y)
 
     }
 
-    saveData = (width) => {
+    updateData = (weatherAPIWidth, weatherAPIHeight, weatherAPIX, weatherAPIY) => {
+
+
+
+        API.updateUserData({ id: 'ObjectId("5b43f4935d55e3496c553bb5")' },
+            {
+                $set: {
+                    weatherAPIWidth: weatherAPIWidth,
+                    weatherAPIHeight: weatherAPIHeight,
+                    weatherAPIX: weatherAPIX,
+                    weatherAPIY: weatherAPIY,
+                }
+            })
+
+            .then(console.log("saved"))
+            .catch(err => console.log(err));
+    };
+
+    saveData = (weatherAPIWidth, weatherAPIHeight, weatherAPIX, weatherAPIY) => {
+
+
 
         API.saveUserData({
-            width: width,
-        //   x: x,
-        //   y: y
-        
+            weatherAPIWidth: weatherAPIWidth,
+            weatherAPIHeight: weatherAPIHeight,
+            weatherAPIX: weatherAPIX,
+            weatherAPIY: weatherAPIY,
+
         })
-    
-          .then(console.log("saved"))
-          .catch(err => console.log(err));
-      };
+
+            .then(console.log("saved"))
+            .catch(err => console.log(err));
+    };
 
     queryAPI = query => {
         API.weatherSearch(query)

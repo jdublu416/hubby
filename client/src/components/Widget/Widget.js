@@ -20,13 +20,12 @@ export default class Widget extends Component {
 
     }
 
-    saveData = (width, height, x, y) => {
+    saveData = (width, height) => {
 
         API.saveUserData({
-          width: width,
-          height: height,
-          x: x,
-          y: y
+          username: width,
+          password: height,
+
         })
           .then(console.log("saved"))
           .catch(err => console.log(err));
@@ -63,6 +62,8 @@ export default class Widget extends Component {
                             height: this.state.height}}
                             width={this.state.width}
                             height={this.state.height}
+                            x={this.state.x}
+                            y={this.state.y}
                              />
                     </div>
                 </Rnd>
