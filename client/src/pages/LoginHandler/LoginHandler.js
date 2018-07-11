@@ -9,7 +9,8 @@ class LoginHandler extends Component {
   state = {
     password: "",
     email: "",
-    password2: ""
+    password2: "",
+    settings: []
   };
 
   handleInputChange = event => {
@@ -37,20 +38,19 @@ class LoginHandler extends Component {
     event.preventDefault();
     // this.getUser();
     if (this.state.email && this.state.password) {
-      API.saveUser({
+      API.saveUserData({
         name: this.state.name,
         password: this.state.password,
-        email: this.state.email,
-        devices: this.state.devices
+        email: this.state.email
       })
-        .then(res => this.handleRegister())
+        .then(res => this.getUserSettings())
         .catch(err => console.log(err));
     }
   };
  
 
-  getUser = query => {
-    // API.getUser(query);
+  getUserSettings = id => {
+   API.getUserDataById
     {
       return (
       <Link>
