@@ -63,6 +63,7 @@ class LoginHandler extends Component {
   //   console.log("whoopsies");
   //   event.preventDefault();
     
+
   //   if (this.state.email && this.state.password) {
 
   //     API.saveUserData({
@@ -73,6 +74,7 @@ class LoginHandler extends Component {
   //       .catch(err => console.log(err));
   //   }
   // };
+
 
  
   goToRegister = event => {
