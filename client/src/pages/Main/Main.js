@@ -8,57 +8,54 @@ import Widget from "../../components/Widget";
 import Calendar from "react-calendar";
 import "./Main.css";
 
-
 class Main extends Component {
+  constructor(props) {
+    super();
+    console.log(props.match.params.id);
+    //console.log(match.params.id);
+    //console.log(match.params.id);
+  }
+  state = {
+    staticMode: false,
+    activeWidgets: [Calendar, WeatherAPI]
+  };
 
-    state = {
-        staticMode: false,
-        activeWidgets: [
-            Calendar,
-            WeatherAPI,
-        ],
-    };
+  // componentDidMount = () => {
 
-    // componentDidMount = () => {
+  // }
 
-    // }
+  handleBtnClick = event => {
+    let newState = { ...this.state };
+    newState.staticMode = eval(event.target.getAttribute("value"));
+    this.setState({ ...newState });
+    console.log("click handled");
+    console.log(event);
+    console.log(this.state.staticMode);
+  };
 
-    handleBtnClick = event => {
-        let newState = { ...this.state }
-        newState.staticMode = eval(event.target.getAttribute("value"));
-        this.setState({ ...newState })
-        console.log("click handled")
-        console.log(event)
-        console.log(this.state.staticMode)
-    }
+  saveUserData = () => {};
 
-    saveUserData = () => {
-
-    }
-
-    render() {
-
-        return (
-            <div className="back" style={{ backgroundColor: "grey", position: "relative", }}>
-
-
-
-                {this.state.activeWidgets.map((item, i) =>
-                    <Widget
-                        key={i}
-                        type={this.state.activeWidgets[i]}
-                        draggable={this.state.staticMode}
-                        resizable={(this.state.staticMode == true)? false : true}
-                    />
-                )}
-                <Button
-                    value={(this.state.staticMode === false) ? true : false}
-                    handleBtnClick={this.handleBtnClick} />
-            </div>
-
-        )
-    }
+  render() {
+    return (
+      <div
+        className="back"
+        style={{ backgroundColor: "grey", position: "relative" }}
+      >
+        {this.state.activeWidgets.map((item, i) => (
+          <Widget
+            key={i}
+            type={this.state.activeWidgets[i]}
+            draggable={this.state.staticMode}
+            resizable={this.state.staticMode == true ? false : true}
+          />
+        ))}
+        <Button
+          value={this.state.staticMode === false ? true : false}
+          handleBtnClick={this.handleBtnClick}
+        />
+      </div>
+    );
+  }
 }
 
 export default Main;
-

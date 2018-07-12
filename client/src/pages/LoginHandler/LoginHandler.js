@@ -21,13 +21,14 @@ class LoginHandler extends Component {
   };
 
   componentDidMount() {
-    this.loadUserSettings();
+    //this.loadUserSettings();
   }
 
-  loadUserSettings = () => {
-    API.getUser()
-      .then(res => this.setState({ userData: res.data }))
-      .catch(err => console.log(err));
+  loadUserSettings = (res) => {
+   console.log(res);
+       this.setState({ userData: res.data });
+       this.props.history.push('/Main/' + res.data._id);
+      
   };
 
 
@@ -49,28 +50,29 @@ class LoginHandler extends Component {
       API.saveUserData({
         password: this.state.password,
         email: this.state.email
-      }).catch(err => console.log(err));
-      // this.handleFormSubmit();
-      // this.getUser();
+        
+      }).then(res => this.loadUserSettings(res))
+      .catch(err => console.log(err));
+      
     }
   };
 
   
 
-  handleFormSubmitRegister = event => {
-    console.log("whoopsies");
-    event.preventDefault();
+  // handleFormSubmitRegister = event => {
+  //   console.log("whoopsies");
+  //   event.preventDefault();
     
-    if (this.state.email && this.state.password) {
+  //   if (this.state.email && this.state.password) {
 
-      API.saveUserData({
-        password: this.state.password,
-        email: this.state.email
-      })
-        .then(res => this.getUserSettings())
-        .catch(err => console.log(err));
-    }
-  };
+  //     API.saveUserData({
+  //       password: this.state.password,
+  //       email: this.state.email
+  //     })
+  //       .then(res => this.loadUserSettings())
+  //       .catch(err => console.log(err));
+  //   }
+  // };
 
  
   goToRegister = event => {
