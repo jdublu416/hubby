@@ -7,7 +7,6 @@ const userSchema = new Schema({
   password: { type: String, required: false },
   email: { type: String, required: false },
   date: { type: Date, default: Date.now },
-
   weatherAPIWidth: {type: Number},
   weatherAPIHeight: {type: Number},
   weatherAPIX: {type: Number},
@@ -16,6 +15,7 @@ const userSchema = new Schema({
   calendarHeight: {type: Number},
   calendarX: {type: Number},
   calendarY: {type: Number},
+  
 
 });
 

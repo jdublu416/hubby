@@ -17,8 +17,20 @@ class LoginHandler extends Component {
   state = {
     password: "",
     email: "",
-    password2: ""
+    password2: "",
+    userData: []
   };
+
+  componentDidMount() {
+    this.loadUserSettings();
+  }
+
+  loadUserSettings = () => {
+    API.getUser()
+      .then(res => this.setState({ userData: res.data }))
+      .catch(err => console.log(err));
+  };
+
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -40,39 +52,24 @@ class LoginHandler extends Component {
     }
   };
 
-  // handlePasswordCheck = () => {
-  //   <Popover id="popover-positioned-scrolling-right" title="Popover right">
-  //     <strong>Holy guacamole!</strong> Check this info.
-  //   </Popover>;
-  // };
+  
 
-  handleFormSubmit = event => {
+  handleFormSubmitRegister = event => {
     console.log("whoopsies");
     event.preventDefault();
-    // this.getUser();
+    
     if (this.state.email && this.state.password) {
-      API.saveUser({
+      API.saveUserData({
         name: this.state.name,
         password: this.state.password,
-        email: this.state.email,
-        devices: this.state.devices
+        email: this.state.email
       })
-        .then(res => this.handleRegister())
+        .then(res => this.getUserSettings())
         .catch(err => console.log(err));
     }
   };
 
-  getUser = query => {
-    // API.getUser(query);
-    {
-      return (
-        <Link>
-          <Main />
-        </Link>
-      );
-    }
-  };
-
+ 
   goToRegister = event => {
     console.log("clickity wickity");
     event.preventDefault();
@@ -86,9 +83,7 @@ class LoginHandler extends Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
           handleRegister={this.handleRegister}
-          goToRegister={this.goToRegister}
-          handlePasswordCheck={popoverRight}
-        />
+          goToRegister={this.goToRegister}/>
       </div>
     );
   }
