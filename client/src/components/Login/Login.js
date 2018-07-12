@@ -35,7 +35,6 @@ const Login = props => (
           />{" "}
           Remember me
         </label>
-        {/* <Link to="/Main"> */}
         <button
           className="btn btn-lg btn-primary btn-block"
           // onClick={}
@@ -44,26 +43,10 @@ const Login = props => (
         >
           Login
         </button>
-        {/* </Link> */}
         <div className="row">
-          {/* <div className="hor-line1 col-md-5" /> */}
           <h5 className="text-center either-or"> or </h5>
-          {/* <div className="hor-line2 col-md-5" /> */}
         </div>
-        {/* <Link to="/register" handlePasswordCheck={props.handlePasswordCheck}> */}
-        <button
-          onClick={<Trigger />}
-          className="btn btn-lg btn-primary btn-block"
-          // type="submit"
-        >
-          Register
-        </button>
-
-
-
-
-        
-        {/* </Link> */}
+        <Trigger />
       </form>
     </div>
   </div>
