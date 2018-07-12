@@ -46,7 +46,6 @@ const Login = props => (
         <div className="row">
           <h5 className="text-center either-or"> or </h5>
         </div>
-
         <Trigger />
       </form>
     </div>
