@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import Login from "../../components/Login";
 import Register from "../../components/Register";
 import API from "../../util/API";
 import Main from "../Main";
 import { Link } from "react-router-dom";
 import { Popover } from "react-bootstrap";
-import { Modal } from "react-bootstrap";
+import Trigger from "../../components/Trigger";
 
 const popoverRight = (
   <Popover id="popover-positioned-right" title="Popover right">
@@ -22,13 +21,14 @@ class LoginHandler extends Component {
   };
 
   componentDidMount() {
-    this.loadUserSettings();
+    //this.loadUserSettings();
   }
 
-  loadUserSettings = () => {
-    API.getUser()
-      .then(res => this.setState({ userData: res.data }))
-      .catch(err => console.log(err));
+  loadUserSettings = (res) => {
+   console.log(res);
+       this.setState({ userData: res.data });
+       this.props.history.push('/Main/' + res.data._id);
+      
   };
 
 
@@ -42,31 +42,39 @@ class LoginHandler extends Component {
   };
 
   handleRegister = event => {
+    console.log("click");
     event.preventDefault();
     if (this.state.password !== this.state.password2) {
       alert("these no match yo");
     } else if (this.state.password === this.state.password2) {
-      alert("you deed it");
-      this.handleFormSubmit();
-      this.getUser();
+      API.saveUserData({
+        password: this.state.password,
+        email: this.state.email
+        
+      }).then(res => this.loadUserSettings(res))
+      .catch(err => console.log(err));
+      
     }
   };
 
   
 
-  handleFormSubmitRegister = event => {
-    console.log("whoopsies");
-    event.preventDefault();
+  // handleFormSubmitRegister = event => {
+  //   console.log("whoopsies");
+  //   event.preventDefault();
     
-    if (this.state.email && this.state.password) {
-      API.saveUserData({
-        password: this.state.password,
-        email: this.state.email
-      })
-        .then(res => this.getUserSettings())
-        .catch(err => console.log(err));
-    }
-  };
+
+  //   if (this.state.email && this.state.password) {
+
+  //     API.saveUserData({
+  //       password: this.state.password,
+  //       email: this.state.email
+  //     })
+  //       .then(res => this.loadUserSettings())
+  //       .catch(err => console.log(err));
+  //   }
+  // };
+
 
  
   goToRegister = event => {
@@ -77,12 +85,55 @@ class LoginHandler extends Component {
 
   render() {
     return (
-      <div>
-        <Login
-          handleFormSubmit={this.handleFormSubmit}
-          handleInputChange={this.handleInputChange}
-          handleRegister={this.handleRegister}
-          goToRegister={this.goToRegister}/>
+      <div className="container">
+        <div className="wrapper">
+          <form className="form-signin">
+            <h3 className="form-signin-heading text-center">Login to Hubby:</h3>
+            <input
+              type="text"
+              className="form-control"
+              name="username"
+              placeholder="Email Address"
+              required
+              autofocus=""
+              onChange={this.handleInputChange}
+            />
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              placeholder="Password"
+              required
+              onChange={this.handleInputChange}
+            />
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                value="remember-me"
+                id="rememberMe"
+                name="rememberMe"
+              />{" "}
+              Remember me
+            </label>
+            <a
+              className="btn btn-lg btn-primary btn-block"
+              // onClick={}
+              // type="submit"
+              // onClick={props.handleFormSubmit}
+            >
+              Login
+            </a>
+            <div className="row">
+              <h5 className="text-center either-or"> or </h5>
+            </div>
+
+            <Trigger
+              handlePasswordCheck={this.handlePasswordCheck}
+              handleInputChange={this.handleInputChange}
+              handleRegister={this.handleRegister}
+            />
+          </form>
+        </div>
       </div>
     );
   }

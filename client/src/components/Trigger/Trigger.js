@@ -1,9 +1,8 @@
 import React from "react";
 import "./Trigger.css";
-import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 
-class Trigger extends React.Component {
+export default class Trigger extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -19,37 +18,57 @@ class Trigger extends React.Component {
   }
   render() {
     return (
-      <div className="modal-container" style={{ height: 200 }}>
-        <Button
-          bsStyle="primary"
-          bsSize="large"
+      <div className="modal-container">
+        <a
+          className="btn btn-lg btn-primary btn-block"
           onClick={() => this.setState({ show: true })}
         >
-          Launch contained modal
-        </Button>
+          Register
+        </a>
 
-        <Modal
-          show={this.state.show}
-          onHide={this.handleHide}
-          container={this}
-          aria-labelledby="contained-modal-title"
-        >
+        <Modal show={this.state.show} onHide={this.handleHide}>
           <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title">
-              Contained Modal
-            </Modal.Title>
+            <form>
+              <h3 className="form-signin-heading text-center">
+                Create an account:
+              </h3>
+              <input
+                type="text"
+                className="form-control"
+                name="email"
+                placeholder="Email Address"
+                required
+                autofocus=""
+                onChange={this.props.handleInputChange}
+              />
+              <input
+                type="password"
+                className="form-control"
+                name="password"
+                placeholder="Password"
+                required
+                onChange={this.props.handleInputChange}
+              />
+              <input
+                type="password"
+                className="form-control"
+                name="password2"
+                placeholder="Confirm password"
+                required
+                onFocus={this.props.handlePasswordCheck}
+                onChange={this.props.handleInputChange}
+              />
+              <a
+                className="btn btn-lg btn-primary btn-block"
+                onClick={this.props.handleRegister}
+                // href="/Main"
+              >
+                Make Account
+              </a>
+            </form>
           </Modal.Header>
-          <Modal.Body>
-            Elit est explicabo ipsum eaque dolorem blanditiis doloribus sed id
-            ipsam, beatae, rem fuga id earum? Inventore et facilis obcaecati.
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.handleHide}>Close</Button>
-          </Modal.Footer>
         </Modal>
       </div>
     );
   }
 }
-
-export default Trigger;
