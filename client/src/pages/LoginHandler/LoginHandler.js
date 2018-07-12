@@ -3,14 +3,7 @@ import Register from "../../components/Register";
 import API from "../../util/API";
 import Main from "../Main";
 import { Link } from "react-router-dom";
-import { Popover } from "react-bootstrap";
 import Trigger from "../../components/Trigger";
-
-const popoverRight = (
-  <Popover id="popover-positioned-right" title="Popover right">
-    <strong>Holy guacamole!</strong> Check this info.
-  </Popover>
-);
 
 class LoginHandler extends Component {
   state = {
@@ -24,13 +17,11 @@ class LoginHandler extends Component {
     //this.loadUserSettings();
   }
 
-  loadUserSettings = (res) => {
-   console.log(res);
-       this.setState({ userData: res.data });
-       this.props.history.push('/Main/' + res.data._id);
-      
+  loadUserSettings = res => {
+    console.log(res);
+    this.setState({ userData: res.data });
+    this.props.history.push("/Main/" + res.data._id);
   };
-
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -44,25 +35,17 @@ class LoginHandler extends Component {
   handleRegister = event => {
     console.log("click");
     event.preventDefault();
-    if (this.state.password !== this.state.password2) {
-      alert("these no match yo");
-    } else if (this.state.password === this.state.password2) {
-      API.saveUserData({
-        password: this.state.password,
-        email: this.state.email
-        
-      }).then(res => this.loadUserSettings(res))
+    API.saveUserData({
+      password: this.state.password,
+      email: this.state.email
+    })
+      .then(res => this.loadUserSettings(res))
       .catch(err => console.log(err));
-      
-    }
   };
-
-  
 
   // handleFormSubmitRegister = event => {
   //   console.log("whoopsies");
   //   event.preventDefault();
-    
 
   //   if (this.state.email && this.state.password) {
 
@@ -75,8 +58,6 @@ class LoginHandler extends Component {
   //   }
   // };
 
-
- 
   goToRegister = event => {
     console.log("clickity wickity");
     event.preventDefault();
@@ -90,7 +71,7 @@ class LoginHandler extends Component {
           <form className="form-signin">
             <h3 className="form-signin-heading text-center">Login to Hubby:</h3>
             <input
-              type="text"
+              type="email"
               className="form-control"
               name="username"
               placeholder="Email Address"
@@ -131,6 +112,7 @@ class LoginHandler extends Component {
               handlePasswordCheck={this.handlePasswordCheck}
               handleInputChange={this.handleInputChange}
               handleRegister={this.handleRegister}
+              state={this.state}
             />
           </form>
         </div>
