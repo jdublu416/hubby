@@ -60,7 +60,6 @@ class LoginHandler extends Component {
     
     if (this.state.email && this.state.password) {
       API.saveUserData({
-        name: this.state.name,
         password: this.state.password,
         email: this.state.email
       })
