@@ -9,7 +9,6 @@ import Calendar from "react-calendar";
 import "./Main.css";
 import API from "../../util/API";
 
-let id = "";
 
 class Main extends Component {
   constructor(props) {
@@ -19,12 +18,14 @@ class Main extends Component {
   state = {
     staticMode: false,
     activeWidgets: [Calendar, WeatherAPI],
-    ActiveId: id
+    Activeid:""
   };
 
-  // componentDidMount = () => {
-
-  // }
+  componentDidMount = () => {
+    this.setState({
+      Activeid: this.props.match.params.id
+    });
+  };
 
   handleBtnClick = event => {
     let newState = { ...this.state };
