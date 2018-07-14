@@ -16,6 +16,7 @@ class Main extends Component {
     console.log(props.match.params.id);
   }
   state = {
+    activeId: "",
     staticMode: false,
     activeWidgets: [Calendar, WeatherAPI],
     activeId:""

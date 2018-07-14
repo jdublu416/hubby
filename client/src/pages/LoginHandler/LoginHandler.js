@@ -3,14 +3,7 @@ import Register from "../../components/Register";
 import API from "../../util/API";
 import Main from "../Main";
 import { Link } from "react-router-dom";
-import { Popover } from "react-bootstrap";
 import Trigger from "../../components/Trigger";
-
-const popoverRight = (
-  <Popover id="popover-positioned-right" title="Popover right">
-    <strong>Holy guacamole!</strong> Check this info.
-  </Popover>
-);
 
 class LoginHandler extends Component {
   state = {
@@ -29,7 +22,11 @@ class LoginHandler extends Component {
   //      this.setState({ userData: res.data });
   //      this.props.history.push('/Main/:id/' + res.data._id);
 
-  // };
+  loadUserSettings = res => {
+    console.log(res);
+    this.setState({ userData: res.data });
+    this.props.history.push("/Main/" + res.data._id);
+  };
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -79,7 +76,7 @@ class LoginHandler extends Component {
           <form className="form-signin">
             <h3 className="form-signin-heading text-center">Login to Hubby:</h3>
             <input
-              type="text"
+              type="email"
               className="form-control"
               name="username"
               placeholder="Email Address"
