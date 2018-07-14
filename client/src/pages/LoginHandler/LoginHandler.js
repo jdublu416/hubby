@@ -120,6 +120,7 @@ class LoginHandler extends Component {
               handlePasswordCheck={this.handlePasswordCheck}
               handleInputChange={this.handleInputChange}
               handleRegister={this.handleRegister}
+              state={this.state}
             />
           </form>
         </div>
