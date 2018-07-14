@@ -3,14 +3,7 @@ import Register from "../../components/Register";
 import API from "../../util/API";
 import Main from "../Main";
 import { Link } from "react-router-dom";
-import { Popover } from "react-bootstrap";
 import Trigger from "../../components/Trigger";
-
-const popoverRight = (
-  <Popover id="popover-positioned-right" title="Popover right">
-    <strong>Holy guacamole!</strong> Check this info.
-  </Popover>
-);
 
 class LoginHandler extends Component {
   state = {
@@ -21,15 +14,19 @@ class LoginHandler extends Component {
   };
 
   componentDidMount() {
-    this.loadUserSettings();
+    //this.loadUserSettings();
   }
+  // THIS should happen on the main page?
+  // loadUserSettings = (res) => {
+  //  console.log(res);
+  //      this.setState({ userData: res.data });
+  //      this.props.history.push('/Main/:id/' + res.data._id);
 
-  loadUserSettings = () => {
-    API.getUser()
-      .then(res => this.setState({ userData: res.data }))
-      .catch(err => console.log(err));
+  loadUserSettings = res => {
+    console.log(res);
+    this.setState({ userData: res.data });
+    this.props.history.push("/Main/" + res.data._id);
   };
-
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -48,31 +45,24 @@ class LoginHandler extends Component {
     } else if (this.state.password === this.state.password2) {
       API.saveUserData({
         password: this.state.password,
-        email: this.state.email
-      }).catch(err => console.log(err));
-      // this.handleFormSubmit();
-      // this.getUser();
-    }
-  };
-
-  
-
-  handleFormSubmitRegister = event => {
-    console.log("whoopsies");
-    event.preventDefault();
-    
-    if (this.state.email && this.state.password) {
-
-      API.saveUserData({
-        password: this.state.password,
-        email: this.state.email
+        email: this.state.email,
+        //maybe we need to have a method that sets a default value for the weather/calendar api's so when user is created
+      //they already have values in their userObject
+        weatherAPIWidth: this.state.weatherAPIWidth,
+        weatherAPIHeight: this.state.weatherAPIHeight,
+        weatherAPIX: this.weatherAPIX,
+        weatherAPIY: this.weatherAPIY,
+        calendarWidth: this.calendarWidth,
+        calendarHeight: this.calendarHeight,
+        calendarX: this.calendarX,
+        calendarY: this.calendarY
       })
-        .then(res => this.getUserSettings())
+        .then(() => this.props.history.push("/Main/:id"))
         .catch(err => console.log(err));
+      
     }
   };
 
- 
   goToRegister = event => {
     console.log("clickity wickity");
     event.preventDefault();
@@ -86,7 +76,7 @@ class LoginHandler extends Component {
           <form className="form-signin">
             <h3 className="form-signin-heading text-center">Login to Hubby:</h3>
             <input
-              type="text"
+              type="email"
               className="form-control"
               name="username"
               placeholder="Email Address"
@@ -127,6 +117,7 @@ class LoginHandler extends Component {
               handlePasswordCheck={this.handlePasswordCheck}
               handleInputChange={this.handleInputChange}
               handleRegister={this.handleRegister}
+              state={this.state}
             />
           </form>
         </div>
