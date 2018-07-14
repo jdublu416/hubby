@@ -77,7 +77,6 @@ export default class Trigger extends React.Component {
               </div>
               <a
                 className="btn btn-lg btn-primary btn-block"
-                // onClick={this.props.handleRegister}
                 onClick={
                   this.props.state.password === this.props.state.password2 &&
                   this.props.state.password.length > 1 &&

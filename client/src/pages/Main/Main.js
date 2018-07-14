@@ -12,17 +12,18 @@ class Main extends Component {
   constructor(props) {
     super();
     console.log(props.match.params.id);
-    //console.log(match.params.id);
-    //console.log(match.params.id);
   }
   state = {
+    activeId: "",
     staticMode: false,
     activeWidgets: [Calendar, WeatherAPI]
   };
 
-  // componentDidMount = () => {
-
-  // }
+  componentDidMount = () => {
+    this.setState({
+      ActiveId: this.props.match.params.id
+    });
+  };
 
   handleBtnClick = event => {
     let newState = { ...this.state };
