@@ -23,8 +23,9 @@ module.exports = {
   },
   update: function(req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, req.body,)
       .then(dbModel => res.json(dbModel))
+      .then(console.log("successful update"))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {

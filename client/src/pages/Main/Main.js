@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-
-// import Settings from "../../components/Settings";
+import TwitterWidget from "../../components/TwitterWidget";  
 import WeatherAPI from "../../components/WeatherAPI";
 import Button from "../../components/Button";
 import Widget from "../../components/Widget";
 import Calendar from "react-calendar";
 import "./Main.css";
 import API from "../../util/API";
-
-let id = "";
 
 class Main extends Component {
   constructor(props) {
@@ -18,13 +14,15 @@ class Main extends Component {
   }
   state = {
     staticMode: false,
-    activeWidgets: [Calendar, WeatherAPI],
-    ActiveId: id
+    activeWidgets: [Calendar, WeatherAPI, TwitterWidget],
+    activeId: ""
   };
 
-  // componentDidMount = () => {
-
-  // }
+  componentDidMount = () => {
+    this.setState({
+      activeId: this.props.match.params.id
+    });
+  };  
 
   handleBtnClick = event => {
     let newState = { ...this.state };
