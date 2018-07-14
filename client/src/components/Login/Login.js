@@ -1,6 +1,8 @@
 import React from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import { Modal } from "react-bootstrap";
+import Trigger from "../Trigger";
 
 const Login = props => (
   <div className="container">
@@ -33,28 +35,18 @@ const Login = props => (
           />{" "}
           Remember me
         </label>
-        <Link to="/Main">
-          <button
-            className="btn btn-lg btn-dark btn-block"
-            // type="submit"
-            // onClick={props.handleFormSubmit}
-          >
-            Login
-          </button>
-        </Link>
+        <button
+          className="btn btn-lg btn-primary btn-block"
+          // onClick={}
+          // type="submit"
+          // onClick={props.handleFormSubmit}
+        >
+          Login
+        </button>
         <div className="row">
-          <div className="hor-line1 col-md-5" />
-          <h5 className="text-center either-or col-md-2"> or </h5>
-          <div className="hor-line2 col-md-5" />
+          <h5 className="text-center either-or"> or </h5>
         </div>
-        <Link to="/register">
-          <button
-            className="btn btn-lg btn-dark btn-block"
-            // type="submit"
-          >
-            Register
-          </button>
-        </Link>
+        <Trigger />
       </form>
     </div>
   </div>
