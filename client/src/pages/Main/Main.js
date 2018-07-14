@@ -19,12 +19,12 @@ class Main extends Component {
     activeId: "",
     staticMode: false,
     activeWidgets: [Calendar, WeatherAPI],
-    Activeid:""
+    activeId:""
   };
 
   componentDidMount = () => {
     this.setState({
-      ActiveId: this.props.match.params.id
+      activeId: this.props.match.params.id
     });
   };
 
