@@ -25,11 +25,10 @@ class LoginHandler extends Component {
   loadUserSettings = event => {
     // console.log(res);
     event.preventDefault();
-    API.getUserDataByEmail(this.state.email).then(res =>
-      console.log(res.data[0])
-    );
-    // .then(res => this.props.history.push("/Main/:id" + res.data._id))
-    // .catch(err => console.log(err));
+    API.getUserDataByEmail(this.state.email)
+      // .then(res => console.log(res.data[0]))
+      .then(res => this.props.history.push("/Main/:id" + res.data[0]._id))
+      .catch(err => console.log(err));
     // this.setState({ userData: res.data });
   };
 
