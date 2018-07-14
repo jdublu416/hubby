@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import Register from "../../components/Register";
 import API from "../../util/API";
 import Main from "../Main";
-import { Link } from "react-router-dom";
 import Trigger from "../../components/Trigger";
+import { ToastContainer, toast } from "react-toastify";
+
+const Msg = () => <div>This password is incorrect.</div>;
 
 class LoginHandler extends Component {
   state = {
@@ -27,7 +29,13 @@ class LoginHandler extends Component {
     event.preventDefault();
     API.getUserDataByEmail(this.state.email)
       // .then(res => console.log(res.data[0]))
-      .then(res => this.props.history.push("/Main/:id" + res.data[0]._id))
+      .then(res => {
+        if (this.state.password === res.data[0].password) {
+          this.props.history.push("/Main/:id" + res.data[0]._id);
+        } else {
+          toast(<Msg />);
+        }
+      })
       .catch(err => console.log(err));
     // this.setState({ userData: res.data });
   };
@@ -92,6 +100,7 @@ class LoginHandler extends Component {
               required
               onChange={this.handleInputChange}
             />
+            <ToastContainer />
             <label className="checkbox">
               <input
                 type="checkbox"
