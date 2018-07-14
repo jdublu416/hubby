@@ -1,17 +1,22 @@
 import axios from "axios";
 
-const weatherURL =
-  "https://api.openweathermap.org/data/2.5/weather?units=imperial&zip=";
+
+const weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=imperial&zip=";
 
 const weatherApiKey = ",us&appid=bd0d3906d4a9c29f579ad1a5dd40d33c";
-
+const twitterURL = "https://api.twitter.com/1.1/search/tweets.json?q=from%3ANasa%20OR%20%23nasa"  
+ 
 // const weatherQuery = "23060";
 
 export default {
   weatherSearch: function(weatherQuery) {
     return axios.get(weatherURL + weatherQuery + weatherApiKey);
   },
-  getUser: function() {
+
+  twitterSearch: function (twitterQuery) {  
+    return axios.get(twitterURL);  
+  },  
+  getUser: function () {
     return axios.get("/api/user");
   },
   // Gets the article with the given id
@@ -32,4 +37,5 @@ export default {
   updateUserData: function(userData) {
     return axios.put("/api/user", userData);
   }
+
 };
