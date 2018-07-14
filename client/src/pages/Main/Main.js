@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-
-// import Settings from "../../components/Settings";
+import TwitterWidget from "../../components/TwitterWidget";  
 import WeatherAPI from "../../components/WeatherAPI";
 import Button from "../../components/Button";
 import Widget from "../../components/Widget";
@@ -18,14 +16,17 @@ class Main extends Component {
   state = {
     activeId: "",
     staticMode: false,
-    activeWidgets: [Calendar, WeatherAPI],
+
+    activeWidgets: [Calendar, WeatherAPI, TwitterWidget],
+    activeId: ""
+
   };
 
   componentDidMount = () => {
     this.setState({
       activeId: this.props.match.params.id
     });
-  };
+
 
   handleBtnClick = event => {
     let newState = { ...this.state };
