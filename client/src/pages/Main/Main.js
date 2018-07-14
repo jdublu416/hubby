@@ -1,28 +1,32 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
-// import Interactable from "../../components/Interactable";
-import Settings from "../../components/Settings";
+
+// import Settings from "../../components/Settings";
 import WeatherAPI from "../../components/WeatherAPI";
 import Button from "../../components/Button";
 import Widget from "../../components/Widget";
 import Calendar from "react-calendar";
 import "./Main.css";
+import API from "../../util/API";
+
 
 class Main extends Component {
   constructor(props) {
-    super();
+    super(props);
     console.log(props.match.params.id);
-    //console.log(match.params.id);
-    //console.log(match.params.id);
   }
   state = {
+    activeId: "",
     staticMode: false,
-    activeWidgets: [Calendar, WeatherAPI]
+    activeWidgets: [Calendar, WeatherAPI],
+    Activeid:""
   };
 
-  // componentDidMount = () => {
-
-  // }
+  componentDidMount = () => {
+    this.setState({
+      ActiveId: this.props.match.params.id
+    });
+  };
 
   handleBtnClick = event => {
     let newState = { ...this.state };
@@ -33,7 +37,21 @@ class Main extends Component {
     console.log(this.state.staticMode);
   };
 
-  saveUserData = () => {};
+  changeSettings = activeId => {
+    console.log("cha cha cha changing");
+    API.updateUserData({
+      weatherAPIWidth: this.state.weatherAPIWidth,
+      weatherAPIHeight: this.state.weatherAPIHeight,
+      weatherAPIX: this.weatherAPIX,
+      weatherAPIY: this.weatherAPIY,
+      calendarWidth: this.calendarWidth,
+      calendarHeight: this.calendarHeight,
+      calendarX: this.calendarX,
+      calendarY: this.calendarY
+    })
+      .then(activeId => this.props.history.push("/Main/:id"))
+      .catch(err => console.log(err));
+  };
 
   render() {
     return (
@@ -50,9 +68,15 @@ class Main extends Component {
           />
         ))}
         <Button
+        className='myBtn'
           value={this.state.staticMode === false ? true : false}
-          handleBtnClick={this.handleBtnClick}
-        />
+          onClick={this.handleBtnClick}
+        >
+          Toggle
+        </Button>
+        <Button 
+        className='myBtn'
+        onClick={this.handleBtnClick}>Change Settings</Button>
       </div>
     );
   }
