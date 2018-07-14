@@ -19,7 +19,7 @@ export default {
     return axios.get("/api/user/" + id);
   },
   getUserDataByEmail: function(email) {
-    return axios.get("/api/user/" + email);
+    return axios.get("/api/user/email/" + email);
   },
   // Deletes the article with the given id
   deleteUserData: function(id) {
