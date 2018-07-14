@@ -19,7 +19,6 @@ class Main extends Component {
     activeId: "",
     staticMode: false,
     activeWidgets: [Calendar, WeatherAPI],
-    activeId:""
   };
 
   componentDidMount = () => {
