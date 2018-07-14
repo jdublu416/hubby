@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Register from "../../components/Register";
 import API from "../../util/API";
-import Main from "../Main";
 import { Link } from "react-router-dom";
 import Trigger from "../../components/Trigger";
 
