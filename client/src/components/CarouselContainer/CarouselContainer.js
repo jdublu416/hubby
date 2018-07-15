@@ -24,7 +24,7 @@ return(
     <img width={1677} height={550} alt="900x500" src={screen} />
     <Carousel.Caption className='carouseldata'>
       <h3>Personalize Your Computer</h3>
-      <p>Glance at Your appointments and check the local weather!</p>
+      <p>See your appointments and check the local weather!</p>
     </Carousel.Caption>
   </Carousel.Item>
   <Carousel.Item>
