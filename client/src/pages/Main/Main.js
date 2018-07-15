@@ -16,9 +16,9 @@ class Main extends Component {
     console.log(props.match.params.id);
   }
   state = {
+    activeId: "",
     staticMode: false,
     activeWidgets: [Calendar, WeatherAPI],
-    activeId:""
   };
 
   componentDidMount = () => {
@@ -76,6 +76,9 @@ class Main extends Component {
         <Button 
         className='myBtn'
         onClick={this.handleBtnClick}>Change Settings</Button>
+        <Button 
+        className='myBtn'
+        onClick={this.handleBtnClick}>Add Widgets</Button>
       </div>
     );
   }
