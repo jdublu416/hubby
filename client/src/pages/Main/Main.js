@@ -76,6 +76,9 @@ class Main extends Component {
         <Button 
         className='myBtn'
         onClick={this.handleBtnClick}>Change Settings</Button>
+        <Button 
+        className='myBtn'
+        onClick={this.handleBtnClick}>Add Widgets</Button>
       </div>
     );
   }
