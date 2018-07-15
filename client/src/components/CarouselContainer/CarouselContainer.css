@@ -9,7 +9,7 @@ img{
 
 .carouseldata{
     background-color: lightgray;
-    opacity: .7;
+    opacity: .6;
     color: black;
     width: 450px;
     border-radius: 10px;
@@ -17,8 +17,5 @@ img{
     padding: 10px;
     margin-left: 575px;
     margin-bottom: 175px;
-    letter-spacing: 1px;
-    
     
 }
-
