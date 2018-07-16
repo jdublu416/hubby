@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
-
 // import Settings from "../../components/Settings";
 import WeatherAPI from "../../components/WeatherAPI";
 import Button from "../../components/Button";
@@ -20,13 +19,16 @@ class Main extends Component {
   state = {
     activeId: "",
     staticMode: false,
-    activeWidgets: []
+    activeWidgets: [TwitterWidget]
   };
 
   handleWidgetAdd = event => {
     const val = event.target.getAttribute("value");
 
-    if (val === "Twitter" && this.state.activeWidgets.indexOf(TwitterWidget) < 0) {
+    if (
+      val === "Twitter" &&
+      this.state.activeWidgets.indexOf(TwitterWidget) < 0
+    ) {
       let newActiveWidgets = [...this.state.activeWidgets];
       newActiveWidgets.push(TwitterWidget);
       console.log(newActiveWidgets);
@@ -131,14 +133,16 @@ class Main extends Component {
             Calendar
           </MenuItem>
 
-          <MenuItem
-            eventKey="3"
-            value="Twitter"
-            onClick={this.handleWidgetAdd}
-          >
+          <MenuItem eventKey="3" value="Twitter" onClick={this.handleWidgetAdd}>
             Twitter
           </MenuItem>
         </DropdownButton>
+
+        <a href="https://hubbydoo.herokuapp.com/">
+        <Button className="myBtn logout">
+          Logout
+        </Button>
+        </a>
       </div>
     );
   }
