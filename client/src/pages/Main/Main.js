@@ -94,7 +94,6 @@ class Main extends Component {
 
   render() {
     return (
-      
       <div
         className="back"
         style={{ backgroundColor: "grey", position: "relative" }}
@@ -111,7 +110,7 @@ class Main extends Component {
           Save Settings
         </Button>
 
-        <DropdownButton className="myBtn" title="Add Widgets">
+        <DropdownButton className="myBtn zFix" title="Add Widgets">
           <MenuItem
             eventKey="1"
             value="WeatherAPI"
@@ -131,16 +130,10 @@ class Main extends Component {
             Twitter
           </MenuItem>
         </DropdownButton>
-
-        <a href="https://hubbydoo.herokuapp.com/">
-        <Button className="myBtn logout">
-          Logout
-        </Button>
         <Link to="/">
           <Button className="myBtn logout">Logout</Button>
         </Link>
       </div>
-     
     );
   }
 }
