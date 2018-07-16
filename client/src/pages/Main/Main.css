@@ -1,11 +1,9 @@
 React.Fragment{
-    background-color: #222;
-   
-   
+    background-color: #222;  
 }
 
 html{
-    background-image: url("./alone-forest-background.jpg");
+     background-image: url("./alone-forest-background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     height:100%;
@@ -24,4 +22,8 @@ html{
 .logout{
     float:right;
 }
+
+
+  
+
 

@@ -131,7 +131,13 @@ class LoginHandler extends Component {
             />
           </form>
         </div>
+        <footer className="groupCopyright">
+            <small>
+                    <i></i>
+            </small>
+     </footer>
       </div>
+      
     );
   }
 }

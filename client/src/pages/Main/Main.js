@@ -59,6 +59,7 @@ class Main extends Component {
 
   render() {
     return (
+      
       <div
         className="back"
         style={{ backgroundColor: "grey", position: "relative" }}
@@ -96,6 +97,7 @@ class Main extends Component {
           <Button className="myBtn logout">Logout</Button>
         </Link>
       </div>
+     
     );
   }
 }
