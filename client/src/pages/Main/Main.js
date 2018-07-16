@@ -6,11 +6,13 @@ import WeatherAPI from "../../components/WeatherAPI";
 import Button from "../../components/Button";
 import Widget from "../../components/Widget";
 import Calendar from "react-calendar";
+import TwitterWidget from "../../components/TwitterWidget";
 import "./Main.css";
 import API from "../../util/API";
-
+import { DropdownButton, MenuItem } from "react-bootstrap";
 
 class Main extends Component {
+  // Weather = WeatherAPI;
   constructor(props) {
     super(props);
     console.log(props.match.params.id);
@@ -18,7 +20,40 @@ class Main extends Component {
   state = {
     activeId: "",
     staticMode: false,
-    activeWidgets: [Calendar, WeatherAPI],
+    activeWidgets: []
+  };
+
+  handleWidgetAdd = event => {
+    const val = event.target.getAttribute("value");
+
+    if (val === "Twitter" && this.state.activeWidgets.indexOf(TwitterWidget) < 0) {
+      let newActiveWidgets = [...this.state.activeWidgets];
+      newActiveWidgets.push(TwitterWidget);
+      console.log(newActiveWidgets);
+      this.setState({
+        activeWidgets: newActiveWidgets
+      });
+    } else if (
+      val === "WeatherAPI" &&
+      this.state.activeWidgets.indexOf(WeatherAPI) < 0
+    ) {
+      let newActiveWidgets = [...this.state.activeWidgets];
+      newActiveWidgets.push(WeatherAPI);
+      console.log(newActiveWidgets);
+      this.setState({
+        activeWidgets: newActiveWidgets
+      });
+    } else if (
+      val === "Calendar" &&
+      this.state.activeWidgets.indexOf(Calendar) < 0
+    ) {
+      let newActiveWidgets = [...this.state.activeWidgets];
+      newActiveWidgets.push(Calendar);
+      console.log(newActiveWidgets);
+      this.setState({
+        activeWidgets: newActiveWidgets
+      });
+    }
   };
 
   componentDidMount = () => {
@@ -66,19 +101,44 @@ class Main extends Component {
             resizable={this.state.staticMode == true ? false : true}
           />
         ))}
-        <Button
-        className='myBtn'
+        {/* <Button
+          className="myBtn"
           value={this.state.staticMode === false ? true : false}
           onClick={this.handleBtnClick}
         >
           Toggle
+        </Button> */}
+        <Button className="myBtn" onClick={this.handleBtnClick}>
+          Save Settings
         </Button>
-        <Button 
-        className='myBtn'
-        onClick={this.handleBtnClick}>Change Settings</Button>
-        <Button 
-        className='myBtn'
-        onClick={this.handleBtnClick}>Add Widgets</Button>
+        {/* <Button className="myBtn" onClick={this.handleBtnClick}>
+          Add Widgets
+        </Button> */}
+
+        <DropdownButton className="myBtn" title="Add Widgets">
+          <MenuItem
+            eventKey="1"
+            value="WeatherAPI"
+            onClick={this.handleWidgetAdd}
+          >
+            Weather
+          </MenuItem>
+          <MenuItem
+            eventKey="2"
+            value="Calendar"
+            onClick={this.handleWidgetAdd}
+          >
+            Calendar
+          </MenuItem>
+
+          <MenuItem
+            eventKey="3"
+            value="Twitter"
+            onClick={this.handleWidgetAdd}
+          >
+            Twitter
+          </MenuItem>
+        </DropdownButton>
       </div>
     );
   }
