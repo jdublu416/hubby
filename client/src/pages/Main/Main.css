@@ -1,5 +1,13 @@
 React.Fragment{
-    background-color: #222;
+    background-color: #222;  
+}
+
+html{
+     background-image: url("./alone-forest-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100%;
+    
 }
 
 .react-calender button{
@@ -9,5 +17,13 @@ React.Fragment{
 .myBtn{
     width:175px;
     height: 50px;
+    margin-right:10px;
 }
+.logout{
+    float:right;
+}
+
+
+  
+
 

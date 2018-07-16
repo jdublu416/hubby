@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // import Settings from "../../components/Settings";
 import WeatherAPI from "../../components/WeatherAPI";
 import Button from "../../components/Button";
 import Widget from "../../components/Widget";
 import Calendar from "react-calendar";
+import TwitterWidget from '../../components/TwitterWidget';
 import "./Main.css";
 import API from "../../util/API";
-
+import { DropdownButton, MenuItem } from "react-bootstrap";
 
 class Main extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class Main extends Component {
   state = {
     activeId: "",
     staticMode: false,
-    activeWidgets: [Calendar, WeatherAPI],
+    activeWidgets: [Calendar, WeatherAPI, TwitterWidget]
   };
 
   componentDidMount = () => {
@@ -26,6 +27,10 @@ class Main extends Component {
       activeId: this.props.match.params.id
     });
   };
+
+  // handleLogout= ()=>{
+
+  // }
 
   handleBtnClick = event => {
     let newState = { ...this.state };
@@ -54,6 +59,7 @@ class Main extends Component {
 
   render() {
     return (
+      
       <div
         className="back"
         style={{ backgroundColor: "grey", position: "relative" }}
@@ -67,19 +73,31 @@ class Main extends Component {
           />
         ))}
         <Button
-        className='myBtn'
+          className="myBtn"
           value={this.state.staticMode === false ? true : false}
           onClick={this.handleBtnClick}
         >
           Toggle
         </Button>
-        <Button 
-        className='myBtn'
-        onClick={this.handleBtnClick}>Change Settings</Button>
-        <Button 
-        className='myBtn'
-        onClick={this.handleBtnClick}>Add Widgets</Button>
+
+        <Button className="myBtn" onClick={this.handleBtnClick}>
+          Save Settings
+        </Button>
+
+        <DropdownButton title="Add Widgets" className="myBtn">
+          <MenuItem eventKey="1">Calendar</MenuItem>
+          <MenuItem eventKey="2">Weather</MenuItem>
+          <MenuItem eventKey="3" active>Twitter</MenuItem>
+        </DropdownButton>
+
+        {/* <Button className="myBtn" onClick={this.handleBtnClick}>
+          Add Widgets</Button> */}
+
+        <Link to="/">
+          <Button className="myBtn logout">Logout</Button>
+        </Link>
       </div>
+     
     );
   }
 }

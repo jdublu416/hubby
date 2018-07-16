@@ -44,7 +44,7 @@ export default class Widget extends Component {
                     bounds={ "window" }
                     minWidth={ 200 }
                     minHeight={ 200 }
-                    lockAspectRatio={ true }
+                    lockAspectRatio={ false }
                     onResize={(e, direction, ref, delta, position) => {
                         this.setState({
                             width: ref.offsetWidth,
