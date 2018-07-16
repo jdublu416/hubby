@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-// import Settings from "../../components/Settings";
+import { Link } from "react-router-dom";
 import WeatherAPI from "../../components/WeatherAPI";
 import Button from "../../components/Button";
 import Widget from "../../components/Widget";
@@ -64,6 +63,10 @@ class Main extends Component {
     });
   };
 
+  // handleLogout= ()=>{
+
+  // }
+
   handleBtnClick = event => {
     let newState = { ...this.state };
     newState.staticMode = eval(event.target.getAttribute("value"));
@@ -91,6 +94,7 @@ class Main extends Component {
 
   render() {
     return (
+      
       <div
         className="back"
         style={{ backgroundColor: "grey", position: "relative" }}
@@ -103,19 +107,9 @@ class Main extends Component {
             resizable={this.state.staticMode == true ? false : true}
           />
         ))}
-        {/* <Button
-          className="myBtn"
-          value={this.state.staticMode === false ? true : false}
-          onClick={this.handleBtnClick}
-        >
-          Toggle
-        </Button> */}
         <Button className="myBtn" onClick={this.handleBtnClick}>
           Save Settings
         </Button>
-        {/* <Button className="myBtn" onClick={this.handleBtnClick}>
-          Add Widgets
-        </Button> */}
 
         <DropdownButton className="myBtn" title="Add Widgets">
           <MenuItem
@@ -142,8 +136,11 @@ class Main extends Component {
         <Button className="myBtn logout">
           Logout
         </Button>
-        </a>
+        <Link to="/">
+          <Button className="myBtn logout">Logout</Button>
+        </Link>
       </div>
+     
     );
   }
 }
