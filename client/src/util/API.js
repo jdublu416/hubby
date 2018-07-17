@@ -40,8 +40,8 @@ export default {
     return axios({
       method: 'put',
       url: "/api/user/" + id,
-      data: userData}
-    );
+      data: userData
+    });
 
   }
 

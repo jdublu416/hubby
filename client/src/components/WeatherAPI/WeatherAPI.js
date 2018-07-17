@@ -19,26 +19,28 @@ export default class WeatherAPI extends Component {
 
     }
 
-    componentDidUpdate(props) {
-        this.updateData(this.props.width, this.props.height, this.props.x, this.props.y)
-    }
-
-    updateData = (weatherAPIWidth, weatherAPIHeight, weatherAPIX, weatherAPIY) => {
+    // componentDidUpdate(props) {
+    //     this.updateData(this.props.width, this.props.height, this.props.x, this.props.y)
+    // }
 
 
+    // depricated
+    // updateData = (weatherAPIWidth, weatherAPIHeight, weatherAPIX, weatherAPIY) => {
 
-        API.updateUserData(
-            {
-                $set: {
-                    weatherAPIWidth: weatherAPIWidth,
-                    weatherAPIHeight: weatherAPIHeight,
-                    weatherAPIX: weatherAPIX,
-                    weatherAPIY: weatherAPIY,
-                }
-            })
-            .then(console.log("updated"))
-            .catch(err => console.log(err));
-    };
+
+
+    //     API.updateUserData(
+    //         {
+    //             $set: {
+    //                 weatherAPIWidth: weatherAPIWidth,
+    //                 weatherAPIHeight: weatherAPIHeight,
+    //                 weatherAPIX: weatherAPIX,
+    //                 weatherAPIY: weatherAPIY,
+    //             }
+    //         })
+    //         .then(console.log("updated"))
+    //         .catch(err => console.log(err));
+    // };
 
     saveData = (weatherAPIWidth, weatherAPIHeight, weatherAPIX, weatherAPIY) => {
 
@@ -82,7 +84,7 @@ export default class WeatherAPI extends Component {
         return (
             <React.Fragment >
                 {/* image src is hard coded to help test the appearance */}
-                <img src="http://www.iconarchive.com/download/i89287/icons8/ios7/Weather-Partly-Cloudy-Rain.ico" alt="Current Weather Icon" style={{ maxHeight: "35%", maxWidth: "50%", margin: "5% 5% 0% 5%" }} />
+                <img src="http://www.iconarchive.com/download/i89287/icons8/ios7/Weather-Partly-Cloudy-Rain.ico" alt="Current Weather Icon" style={{ maxHeight: "35%", maxWidth: "50%", margin: "5% 5% 0% 5%", pointerEvents: "none" }} />
                 <h1 id="current-temp " style={{ textAlign: "center", fontSize: 36, margin: "5% 5% 0% 5%", padding: ".25em", float: "right", maxWidth: "50%" }}> {this.state.temp} &deg;F</h1>
                 <h2 id="condition" style={{ textAlign: "left", margin: "5%" }}> {this.state.condition} </h2>
                 <p id="high-temp" style={{ float: "left", padding: " 1em", }}> High : {this.state.high} &deg;F</p>
