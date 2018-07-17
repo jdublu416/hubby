@@ -20,7 +20,11 @@ class Main extends Component {
   state = {
     activeId: "",
     staticMode: false,
-    activeWidgets: []
+    activeWidgets: [],
+    weatherAPIHeight: 333,
+    weatherAPIWidth: 333,
+    weatherAPIX: 333,
+    weatherAPIY: 333,
   };
 
   handleWidgetAdd = event => {
@@ -31,7 +35,7 @@ class Main extends Component {
       newActiveWidgets.push(TwitterWidget);
       console.log(newActiveWidgets);
       this.setState({
-        activeWidgets: newActiveWidgets
+        activeWidgets: newActiveWidgets,
       });
     } else if (
       val === "WeatherAPI" &&
@@ -41,7 +45,7 @@ class Main extends Component {
       newActiveWidgets.push(WeatherAPI);
       console.log(newActiveWidgets);
       this.setState({
-        activeWidgets: newActiveWidgets
+        activeWidgets: newActiveWidgets,
       });
     } else if (
       val === "Calendar" &&
@@ -60,6 +64,9 @@ class Main extends Component {
     this.setState({
       activeId: this.props.match.params.id
     });
+
+    this.loadUserSettings();
+        this.changeSettings(this.props.match.params.id);
   };
 
   handleBtnClick = event => {
@@ -71,19 +78,65 @@ class Main extends Component {
     console.log(this.state.staticMode);
   };
 
+  //   loadUserSettings = (res) => {
+  //  console.log(res);
+  //      this.setState({ userData: res.data });
+  //      this.props.history.push('/Main/:id/' + res.data._id);
+  //   }
+  loadUserSettings = event => {
+    // console.log(res);
+    // event.preventDefault();
+    API.getUserDataById(this.state.activeId)
+      // .then(res => console.log(res.data[0]))
+      .then(res => {
+        console.log(res.data[0])
+        let newState = {
+          weatherAPIHeight: res.data[0].weatherAPIHeight,
+          weatherAPIWidth: res.data[0].weatherAPIWidth
+        }
+        this.setState({ ...newState })
+        //   if (this.state.password === res.data[0].password) {
+        //     this.props.history.push("/Main/" + res.data[0]._id);
+        //   } else {
+        //     toast(<Msg />);
+        //   }
+        // })
+      }).catch(err => console.log(err)
+      );
+    // this.setState({ userData: res.data });
+  };
+
+
+
+  loadWidgetSettings = activeId => {
+    console.log("widget load instaciated");
+    API.getUserDataById
+  }
+
+  widgetOnChangeHandler = event => {
+    console.log("handling widget change")
+    this.setState({
+
+    })
+  }
+
   changeSettings = activeId => {
-    console.log("cha cha cha changing");
-    API.updateUserData({
+
+    console.log("cha cha cha changing and id: " + activeId);
+
+    API.updateUserData( activeId ,{
+      $set: {
       weatherAPIWidth: this.state.weatherAPIWidth,
       weatherAPIHeight: this.state.weatherAPIHeight,
-      weatherAPIX: this.weatherAPIX,
-      weatherAPIY: this.weatherAPIY,
-      calendarWidth: this.calendarWidth,
-      calendarHeight: this.calendarHeight,
-      calendarX: this.calendarX,
-      calendarY: this.calendarY
-    })
-      .then(activeId => this.props.history.push("/Main/:id"))
+      weatherAPIX: this.state.weatherAPIX,
+      weatherAPIY: this.state.weatherAPIY,
+      }
+      // calendarWidth: this.calendarWidth,
+      // calendarHeight: this.calendarHeight,
+      // calendarX: this.calendarX,
+      // calendarY: this.calendarY
+  }).then(console.log("through changesettings call"))
+      // .then(activeId => this.props.history.push("/Main/:id"))
       .catch(err => console.log(err));
   };
 
@@ -99,6 +152,7 @@ class Main extends Component {
             type={this.state.activeWidgets[i]}
             draggable={this.state.staticMode}
             resizable={this.state.staticMode == true ? false : true}
+            changeHandler={this.widgetOnChangeHandler}
           />
         ))}
         {/* <Button

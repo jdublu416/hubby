@@ -2236,6 +2236,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
+toastify@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/toastify/-/toastify-1.0.12.tgz#a8664e9860c846619902c8ce641dc2a5424d80b5"
+
 touch@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/touch/-/touch-3.1.0.tgz#fe365f5f75ec9ed4e56825e0bb76d24ab74af83b"

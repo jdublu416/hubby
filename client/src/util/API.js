@@ -34,8 +34,15 @@ export default {
   saveUserData: function(userData) {
     return axios.post("/api/user", userData);
   },
-  updateUserData: function(userData) {
-    return axios.put("/api/user", userData);
+  updateUserData: function(id, userData) {
+    console.log("in update api and id: " + id)
+    console.log(userData)
+    return axios({
+      method: 'put',
+      url: "/api/user/" + id,
+      data: userData}
+    );
+
   }
 
 };

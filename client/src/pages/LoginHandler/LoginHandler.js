@@ -31,6 +31,7 @@ class LoginHandler extends Component {
     API.getUserDataByEmail(this.state.email)
       // .then(res => console.log(res.data[0]))
       .then(res => {
+        console.log(res.data[0])
         if (this.state.password === res.data[0].password) {
           this.props.history.push("/Main/" + res.data[0]._id);
         } else {
@@ -90,7 +91,7 @@ class LoginHandler extends Component {
               name="email"
               placeholder="Email Address"
               required
-              autofocus=""
+              autoFocus=""
               onChange={this.handleInputChange}
             />
             <input

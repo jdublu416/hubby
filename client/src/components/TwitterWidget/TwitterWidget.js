@@ -3,19 +3,8 @@ import API from "../../util/API.js";
 import "./TwitterWidget.css";
 
 
-class TwitterWidget extends Component {
+const TwitterWidget = props => (
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            width: 300,
-            height: 300,
-
-        }
-    };
-
-    render() {
-        return (
             <div style={{ margin: ".75em" }}>
                 <a class="twitter-timeline"
                     href="https://twitter.com/neiltyson?ref_src=twsrc%5Etfw"
@@ -26,9 +15,7 @@ class TwitterWidget extends Component {
                 >
                 </a>
             </div>
-        )
-    }
-}
+)
 
 
 
