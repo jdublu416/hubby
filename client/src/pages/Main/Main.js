@@ -26,7 +26,13 @@ class Main extends Component {
     weatherAPIX: 333,
     weatherAPIY: 333,
     twitterHeight: 500,
+    twitterWidth: 250,
+    twitterX: 100,
+    twitterY: 500,
     calendarHeight: 200,
+    calendarWidth: 200,
+    calendarX: 200,
+    calendarY: 200,
   };
 
   handleWidgetAdd = event => {
@@ -68,7 +74,7 @@ class Main extends Component {
     });
 
     this.loadUserSettings();
-        this.changeSettings(this.props.match.params.id);
+    this.changeSettings(this.props.match.params.id);
   };
 
   handleBtnClick = event => {
@@ -126,18 +132,22 @@ class Main extends Component {
 
     console.log("cha cha cha changing and id: " + activeId);
 
-    API.updateUserData( activeId ,{
+    API.updateUserData(activeId, {
       $set: {
-      weatherAPIWidth: this.state.weatherAPIWidth,
-      weatherAPIHeight: this.state.weatherAPIHeight,
-      weatherAPIX: this.state.weatherAPIX,
-      weatherAPIY: this.state.weatherAPIY,
+        weatherAPIWidth: this.state.weatherAPIWidth,
+        weatherAPIHeight: this.state.weatherAPIHeight,
+        weatherAPIX: this.state.weatherAPIX,
+        weatherAPIY: this.state.weatherAPIY,
+        twitterWidth: this.state.twitterWidth,
+        twitterHeight: this.state.twitterHeight,
+        twitterX: this.state.twitterX,
+        twitterY: this.state.twitterY,
+        calendarWidth: this.state.calendarWidth,
+        calendarHeight: this.state.calendarHeight,
+        calendarX: this.state.calendarX,
+        calendarY: this.state.calendarY,
       }
-      // calendarWidth: this.calendarWidth,
-      // calendarHeight: this.calendarHeight,
-      // calendarX: this.calendarX,
-      // calendarY: this.calendarY
-  }).then(console.log("through changesettings call"))
+    }).then(console.log("through changesettings call"))
       // .then(activeId => this.props.history.push("/Main/:id"))
       .catch(err => console.log(err));
   };
@@ -153,9 +163,21 @@ class Main extends Component {
             key={i}
             type={this.state.activeWidgets[i]}
             height={
-              i === this.state.activeWidgets.indexOf(WeatherAPI) ? this.state.weatherAPIHeight : 
-              i === this.state.activeWidgets.indexOf(TwitterWidget) ? this.state.twitterHeight : 
-              i === this.state.activeWidgets.indexOf(Calendar) ? this.state.calendarHeight : null}
+                i === this.state.activeWidgets.indexOf(WeatherAPI) ? this.state.weatherAPIHeight :
+                i === this.state.activeWidgets.indexOf(TwitterWidget) ? this.state.twitterHeight :
+                i === this.state.activeWidgets.indexOf(Calendar) ? this.state.calendarHeight : null}
+            width={
+                i === this.state.activeWidgets.indexOf(WeatherAPI) ? this.state.weatherAPIWidth :
+                i === this.state.activeWidgets.indexOf(TwitterWidget) ? this.state.twitterWidth :
+                i === this.state.activeWidgets.indexOf(Calendar) ? this.state.calendarWidth : null}
+            x={
+                i === this.state.activeWidgets.indexOf(WeatherAPI) ? this.state.weatherAPIX :
+                i === this.state.activeWidgets.indexOf(TwitterWidget) ? this.state.twitterX :
+                i === this.state.activeWidgets.indexOf(Calendar) ? this.state.calendarX : null}
+            y={
+                i === this.state.activeWidgets.indexOf(WeatherAPI) ? this.state.weatherAPIY :
+                i === this.state.activeWidgets.indexOf(TwitterWidget) ? this.state.twitterY :
+                i === this.state.activeWidgets.indexOf(Calendar) ? this.state.calendarY : null}
             draggable={this.state.staticMode}
             resizable={this.state.staticMode == true ? false : true}
             changeHandler={this.widgetOnChangeHandler}
