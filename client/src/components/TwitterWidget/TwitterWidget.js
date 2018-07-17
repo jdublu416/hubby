@@ -8,7 +8,6 @@ const TwitterWidget = props => (
 
     <div style={{ margin: "1.25em" }}>
         <Timeline
-        style={{pointerEvents: "none"}}
             dataSource={{
                 sourceType: 'profile',
                 screenName: 'neiltyson'

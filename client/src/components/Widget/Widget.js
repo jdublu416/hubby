@@ -40,13 +40,15 @@ export default class Widget extends Component {
                 weatherAPIX: this.state.x,
                 weatherAPIY: this.state.y,
             }
+            console.log("inside widget weather")
         } else if (this.props.thisWidget === "TwitterWidget") {
             data = {
-                twitterWidgetHeight: this.state.height,
-                twitterWidgetWidth: this.state.width,
-                twitterWidgetX: this.state.x,
-                twitterWidgetY: this.state.y,
+                twitterHeight: this.state.height,
+                twitterWidth: this.state.width,
+                twitterX: this.state.x,
+                twitterY: this.state.y,
             }
+            console.log("inside widget twitter")
         } else if (this.props.thisWidget === "Calendar") {
             data = {
                 calendarHeight: this.state.height,
@@ -54,6 +56,7 @@ export default class Widget extends Component {
                 calendarX: this.state.x,
                 calendarY: this.state.y,
             }
+            console.log("inside widget calender")
         } console.log("no match")
         console.log("before change handles: " + data.CalendarX)
         this.props.changeHandler(data);

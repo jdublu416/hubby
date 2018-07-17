@@ -37,19 +37,24 @@ class Main extends Component {
     data: {},
   }; 
    componentDidMount = () => {
+
      console.log( "on init :" + this.state);
-    this.setState({
+    setTimeout(this.setState({
       activeId: this.props.match.params.id
-    });
-console.log("init id added: " + this.state); 
+    }), 500);
     this.loadUserSettings();
-    console.log("user settings loaded: " + this.state); 
     // this.changeSettings(this.props.match.params.id);
-    console.log("changed settings: " + this.state); 
+
   };
 
 
   componentDidUpdate(){
+    if(this.state.activeId !== this.props.match.params.id){
+      this.setState({
+        activeId: this.props.match.params.id
+      })
+    }
+
     this.changeSettings(this.props.match.params.id);
   };
 
@@ -148,7 +153,7 @@ console.log("init id added: " + this.state);
   widgetOnChangeHandler = event => {
     console.log("widget change handled: " + event)
     const newData = event;
-    console.log("hope this is data: " + this.state.data)
+    console.log("hope this is data: " + newData.weatherAPIHeight)
     this.setState({...newData})
   }
 
