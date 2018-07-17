@@ -9,15 +9,15 @@ import API from "../../util/API";
 
 export default class Widget extends Component {
     state = {
-        
+
         width: 305,
         height: 305,
-        x: (window.innerWidth / 3) ,
-        y: (window.innerHeight / 3) ,
-        
+        x: (window.innerWidth / 3),
+        y: (window.innerHeight / 3),
+
     }
 
-    componentDidMount (props) {
+    componentDidMount(props) {
         console.log(this.props.height)
         this.setState({
             height: this.props.height,
@@ -26,58 +26,92 @@ export default class Widget extends Component {
             y: this.props.y
         })
     }
-    
 
+    componentDidUpdate = props => {
 
-    saveData = (width, height) => {
+    }
+
+    dataPusher = () => {
+        let data = {};
+        if (this.props.thisWidget === "WeatherAPI") {
+            data = {
+                weatherAPIHeight: this.state.height,
+                weatherAPIWidth: this.state.width,
+                weatherAPIX: this.state.x,
+                weatherAPIY: this.state.y,
+            }
+        } else if (this.props.thisWidget === "TwitterWidget") {
+            data = {
+                twitterWidgetHeight: this.state.height,
+                twitterWidgetWidth: this.state.width,
+                twitterWidgetX: this.state.x,
+                twitterWidgetY: this.state.y,
+            }
+        } else if (this.props.thisWidget === "Calendar") {
+            data = {
+                calendarHeight: this.state.height,
+                calendarWidth: this.state.width,
+                calendarX: this.state.x,
+                calendarY: this.state.y,
+            }
+        } console.log("no match")
+        console.log("before change handles: " + data.CalendarX)
+        this.props.changeHandler(data);
+    }
+
+    upData = (width, height) => {
 
         API.updateUserData({
-          username: width,
-          password: height,
+
 
         })
-          .then(console.log("saved"))
-          .catch(err => console.log(err));
-      };
+            .then(console.log("saved"))
+            .catch(err => console.log(err));
+    };
 
     render = props => {
 
         return (
 
-                <Rnd
+            <Rnd
 
-                    style
-                    size={{ width: this.state.width, height: this.state.height }}
-                    position={{ x: this.state.x, y: this.state.y }}
-                    onDragStop={(e, d) => { this.setState({ x: d.x, y: d.y }) }}
-                    bounds={ "window" }
-                    minWidth={ 200 }
-                    minHeight={ 200 }
-                    lockAspectRatio={ false }
-                    onResize={(e, direction, ref, delta, position) => {
-                        this.setState({
-                            width: ref.offsetWidth,
-                            height: ref.offsetHeight,
-                            ...position,
-                        });
+                style
+                size={{ width: this.state.width, height: this.state.height }}
+                position={{ x: this.state.x, y: this.state.y }}
+                onDragStop={(e, d) => { 
+                    this.setState({ x: d.x, y: d.y });
+                    this.dataPusher();
                     }}
-                    disableDragging={this.props.draggable}
-                    
-                >
-                    <div className="widget">
-                        < this.props.type 
-                         style={{  
-                            width: this.state.width, 
+                bounds={"window"}
+                minWidth={200}
+                minHeight={200}
+                lockAspectRatio={false}
+                onResize={(e, direction, ref, delta, position) => {
+                    this.setState({
+                        width: ref.offsetWidth,
+                        height: ref.offsetHeight,
+                        ...position,
+                    });
+                }}
+                disableDragging={this.props.draggable}
+
+
+            >
+                <div className="widget">
+                    < this.props.type
+                        style={{
+                            width: this.state.width,
                             height: this.state.height
                         }}
-                            width={this.state.width}
-                            height={this.state.height}
-                            x={this.state.x}
-                            y={this.state.y}
-                            id={this.state.activeId}
-                             />
-                    </div>
-                </Rnd>
+                        width={this.state.width}
+                        height={this.state.height}
+                        x={this.state.x}
+                        y={this.state.y}
+                        id={this.state.activeId}
+                        onChange={this.dataPusher}
+                    />
+                </div>
+            </Rnd>
         )
     }
 }

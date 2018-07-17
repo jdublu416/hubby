@@ -34,6 +34,7 @@ class Main extends Component {
     calendarWidth: 250,
     calendarX: 250,
     calendarY: 250,
+    data: {},
   }; 
    componentDidMount = () => {
      console.log( "on init :" + this.state);
@@ -94,8 +95,6 @@ console.log("init id added: " + this.state);
     }
   };
 
-
-
   handleBtnClick = event => {
     let newState = { ...this.state };
     newState.staticMode = eval(event.target.getAttribute("value"));
@@ -144,9 +143,13 @@ console.log("init id added: " + this.state);
     API.getUserDataById
   }
 
-  widgetOnChangeHandler = event => {
-    console.log("handling widget change")
+  newData;
 
+  widgetOnChangeHandler = event => {
+    console.log("widget change handled: " + event)
+    const newData = event;
+    console.log("hope this is data: " + this.state.data)
+    this.setState({...newData})
   }
 
   changeSettings = activeId => {
@@ -185,6 +188,9 @@ console.log("init id added: " + this.state);
           <Widget
             key={i}
             type={this.state.activeWidgets[i]}
+            thisWidget={i === this.state.activeWidgets.indexOf(WeatherAPI) ? "WeatherAPI" :
+              i === this.state.activeWidgets.indexOf(TwitterWidget) ? "TwitterWidget" :
+              i === this.state.activeWidgets.indexOf(Calendar) ? "Calendar" : null}
             height={
                 i === this.state.activeWidgets.indexOf(WeatherAPI) ? this.state.weatherAPIHeight :
                 i === this.state.activeWidgets.indexOf(TwitterWidget) ? this.state.twitterHeight :
