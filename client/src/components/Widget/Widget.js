@@ -12,8 +12,8 @@ export default class Widget extends Component {
 
         width: 305,
         height: 305,
-        x: (window.innerWidth / 3),
-        y: (window.innerHeight / 3),
+        x: 100,
+        y: 100,
 
     }
 
@@ -92,6 +92,7 @@ export default class Widget extends Component {
                         height: ref.offsetHeight,
                         ...position,
                     });
+                    this.dataPusher();
                 }}
                 disableDragging={this.props.draggable}
 

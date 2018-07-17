@@ -13,7 +13,7 @@ const userSchema = new Schema({
   weatherAPIY: {type: Number},
   twitterWidth: {type: Number},
   twitterHeight: {type: Number},
-  calendarX: {type: Number},
+  twitterX: {type: Number},
   twitterY: {type: Number},
   calendarWidth: {type: Number},
   calendarHeight: {type: Number},
