@@ -31,7 +31,7 @@ class LoginHandler extends Component {
     API.getUserDataByEmail(this.state.email)
       // .then(res => console.log(res.data[0]))
       .then(res => {
-        console.log(res.data[0])
+        console.log(res.data[0]);
         if (this.state.password === res.data[0].password) {
           this.props.history.push("/Main/" + res.data[0]._id);
         } else {
@@ -69,7 +69,7 @@ class LoginHandler extends Component {
       calendarX: this.calendarX,
       calendarY: this.calendarY
     })
-      .then(() => this.props.history.push("/Main/:id"))
+      .then(this.loadUserSettings(event))
       .catch(err => console.log(err));
   };
 
