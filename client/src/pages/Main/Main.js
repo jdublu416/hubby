@@ -44,7 +44,6 @@ class Main extends Component {
     }), 500);
     this.loadUserSettings();
     // this.changeSettings(this.props.match.params.id);
-
   };
 
 
@@ -141,6 +140,14 @@ class Main extends Component {
     // this.setState({ userData: res.data });
   };
 
+
+  arrayPersistChecker = () => {
+    API.getUserDataById(this.props.match.params.id)
+      .then(res => {
+        console.log(res.data[0].activeWidgetsString[0])
+  
+  })
+}
 
 
   loadWidgetSettings = activeId => {
