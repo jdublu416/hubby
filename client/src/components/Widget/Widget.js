@@ -68,7 +68,8 @@ export default class Widget extends Component {
                         < this.props.type 
                          style={{  
                             width: this.state.width, 
-                            height: this.state.height}}
+                            height: this.state.height
+                        }}
                             width={this.state.width}
                             height={this.state.height}
                             x={this.state.x}

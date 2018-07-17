@@ -6,7 +6,7 @@ const userSchema = new Schema({
   password: { type: String, required: false },
   email: { type: String, required: false },
   date: { type: Date, default: Date.now },
-  activeWidgets: [{type: String}],
+  activeWidgetsString: {type: Array},
   weatherAPIWidth: {type: Number},
   weatherAPIHeight: {type: Number},
   weatherAPIX: {type: Number},

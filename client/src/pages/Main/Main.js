@@ -21,6 +21,7 @@ class Main extends Component {
     activeId: "",
     staticMode: false,
     activeWidgets: [],
+    activeWidgetsString: [],
     weatherAPIHeight: 300,
     weatherAPIWidth: 300,
     weatherAPIX: 300,
@@ -42,7 +43,7 @@ class Main extends Component {
 console.log("init id added: " + this.state); 
     this.loadUserSettings();
     console.log("user settings loaded: " + this.state); 
-    this.changeSettings(this.props.match.params.id);
+    // this.changeSettings(this.props.match.params.id);
     console.log("changed settings: " + this.state); 
   };
 
@@ -56,30 +57,39 @@ console.log("init id added: " + this.state);
 
     if (val === "Twitter" && this.state.activeWidgets.indexOf(TwitterWidget) < 0) {
       let newActiveWidgets = [...this.state.activeWidgets];
+      let newWidgetsString = [...this.state.activeWidgetsString];
       newActiveWidgets.push(TwitterWidget);
+      newWidgetsString.push("TwitterWidget");
       console.log(newActiveWidgets);
       this.setState({
         activeWidgets: newActiveWidgets,
+        activeWidgetsString: newWidgetsString,
       });
     } else if (
       val === "WeatherAPI" &&
       this.state.activeWidgets.indexOf(WeatherAPI) < 0
     ) {
       let newActiveWidgets = [...this.state.activeWidgets];
+      let newWidgetsString = [...this.state.activeWidgetsString];
       newActiveWidgets.push(WeatherAPI);
+      newWidgetsString.push("WeatherAPI");
       console.log(newActiveWidgets);
       this.setState({
         activeWidgets: newActiveWidgets,
+        activeWidgetsString: newWidgetsString,
       });
     } else if (
       val === "Calendar" &&
       this.state.activeWidgets.indexOf(Calendar) < 0
     ) {
       let newActiveWidgets = [...this.state.activeWidgets];
+      let newWidgetsString = [...this.state.activeWidgetsString];
       newActiveWidgets.push(Calendar);
+      newWidgetsString.push("Calendar");
       console.log(newActiveWidgets);
       this.setState({
-        activeWidgets: newActiveWidgets
+        activeWidgets: newActiveWidgets,
+        activeWidgetsString: newWidgetsString,
       });
     }
   };
@@ -106,10 +116,19 @@ console.log("init id added: " + this.state);
       .then(res => {
         console.log(res.data[0])
         let newState = {
+          // activeWidgets: res.data[0].activeWidgets,
           weatherAPIHeight: res.data[0].weatherAPIHeight,
           weatherAPIWidth: res.data[0].weatherAPIWidth,
           weatherAPIX: res.data[0].weatherAPIX,
           weatherAPIY: res.data[0].weatherAPIY,
+          twitterHeight: res.data[0].twitterHeight,
+          twitterWidth: res.data[0].twitterWidth,
+          twitterX: res.data[0].twitterX,
+          twitterY: res.data[0].twitterY,
+          calendarHeight: res.data[0].calendarHeight,
+          calendarWidth: res.data[0].calendarWidth,
+          calendarX: res.data[0].calendarX,
+          calendarY: res.data[0].calendarY,
         }
         this.setState({ ...newState })
         console.log(this.state)
@@ -136,7 +155,7 @@ console.log("init id added: " + this.state);
 
     API.updateUserData(activeId, {
       $set: {
-        activeWidgets: this.state.activeWidgets,
+        activeWidgetsString: this.state.activeWidgetsString,
         weatherAPIWidth: this.state.weatherAPIWidth,
         weatherAPIHeight: this.state.weatherAPIHeight,
         weatherAPIX: this.state.weatherAPIX,
