@@ -25,6 +25,8 @@ class Main extends Component {
     weatherAPIWidth: 333,
     weatherAPIX: 333,
     weatherAPIY: 333,
+    twitterHeight: 500,
+    calendarHeight: 200,
   };
 
   handleWidgetAdd = event => {
@@ -150,6 +152,10 @@ class Main extends Component {
           <Widget
             key={i}
             type={this.state.activeWidgets[i]}
+            height={
+              i === this.state.activeWidgets.indexOf(WeatherAPI) ? this.state.weatherAPIHeight : 
+              i === this.state.activeWidgets.indexOf(TwitterWidget) ? this.state.twitterHeight : 
+              i === this.state.activeWidgets.indexOf(Calendar) ? this.state.calendarHeight : null}
             draggable={this.state.staticMode}
             resizable={this.state.staticMode == true ? false : true}
             changeHandler={this.widgetOnChangeHandler}

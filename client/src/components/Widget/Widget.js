@@ -17,6 +17,12 @@ export default class Widget extends Component {
         
     }
 
+    componentDidMount (props) {
+        console.log(this.props.height)
+        this.setState({
+            height: this.props.height
+        })
+    }
     
 
 
