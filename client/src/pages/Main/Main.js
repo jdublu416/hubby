@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-
-// import Settings from "../../components/Settings";
 import WeatherAPI from "../../components/WeatherAPI";
 import Button from "../../components/Button";
 import Widget from "../../components/Widget";
@@ -12,7 +9,7 @@ import API from "../../util/API";
 import { DropdownButton, MenuItem } from "react-bootstrap";
 
 class Main extends Component {
-  // Weather = WeatherAPI;
+
   constructor(props) {
     super(props);
     console.log(props.match.params);
@@ -36,6 +33,7 @@ class Main extends Component {
     calendarY: 250,
     data: {}
   };
+
   componentDidMount = () => {
     console.log("on init :" + this.state);
     setTimeout(
@@ -45,7 +43,6 @@ class Main extends Component {
       500
     );
     this.loadUserSettings();
-    // this.changeSettings(this.props.match.params.id);
   };
 
   handleWidgetLoad = () => {
@@ -138,11 +135,6 @@ class Main extends Component {
     console.log(this.state.staticMode);
   };
 
-  //   loadUserSettings = (res) => {
-  //  console.log(res);
-  //      this.setState({ userData: res.data });
-  //      this.props.history.push('/Main/:id/' + res.data._id);
-  //   }
   loadUserSettings = event => {
     console.log("loading user settings...");
     API.getUserDataById(this.state.activeId)
@@ -169,7 +161,6 @@ class Main extends Component {
         console.log(this.state);
       })
       .catch(err => console.log(err));
-    // this.setState({ userData: res.data });
   };
 
   arrayPersistChecker = () => {
@@ -193,7 +184,6 @@ class Main extends Component {
   };
 
   changeSettings = activeId => {
-    // console.log("cha cha cha changing and id: " + activeId);
 
     API.updateUserData(activeId, {
       $set: {
@@ -212,8 +202,6 @@ class Main extends Component {
         calendarY: this.state.calendarY
       }
     })
-      // .then(console.log("through changesettings call"))
-      // .then(activeId => this.props.history.push("/Main/:id"))
       .catch(err => console.log(err));
   };
 
@@ -299,7 +287,8 @@ class Main extends Component {
             borderRadius: "50%", 
             height: "36px", 
             width: "36px",
-            margin: ".5em"}}>
+            margin: ".5em",
+            boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",}}>
           <MenuItem
             eventKey="1"
             value="WeatherAPI"

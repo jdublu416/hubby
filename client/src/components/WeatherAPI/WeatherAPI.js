@@ -18,9 +18,6 @@ export default class WeatherAPI extends Component {
     componentDidMount(props) {
         this.queryAPI(this.state.location)
 
-        
-        // this.updateData(this.props.width, this.props.height, this.props.x, this.props.y)
-
     }
 
     // componentDidUpdate(props) {
@@ -46,25 +43,25 @@ export default class WeatherAPI extends Component {
     //         .catch(err => console.log(err));
     // };
 
-    locationChangeHandler = () => {
+    // locationChangeHandler = () => {
 
-    }
+    // }
 
-    saveData = (weatherAPIWidth, weatherAPIHeight, weatherAPIX, weatherAPIY) => {
+    // saveData = (weatherAPIWidth, weatherAPIHeight, weatherAPIX, weatherAPIY) => {
 
 
 
-        API.saveUserData({
-            weatherAPIWidth: weatherAPIWidth,
-            weatherAPIHeight: weatherAPIHeight,
-            weatherAPIX: weatherAPIX,
-            weatherAPIY: weatherAPIY,
+    //     API.saveUserData({
+    //         weatherAPIWidth: weatherAPIWidth,
+    //         weatherAPIHeight: weatherAPIHeight,
+    //         weatherAPIX: weatherAPIX,
+    //         weatherAPIY: weatherAPIY,
 
-        })
+    //     })
 
-            .then(console.log("saved"))
-            .catch(err => console.log(err));
-    };
+    //         .then(console.log("saved"))
+    //         .catch(err => console.log(err));
+    // };
 
     picturePicker = (condition) => {
         let newStatePicture;
@@ -97,8 +94,6 @@ export default class WeatherAPI extends Component {
 
     queryAPI = query => {
         API.weatherSearch(query)
-
-            // .then(res => this.setState({ results: res.response }))
             .then(res => {
                 const f = res.data.main.temp;
                 const temp = parseInt(f);
@@ -122,7 +117,6 @@ export default class WeatherAPI extends Component {
     render() {
         return (
             <React.Fragment >
-                {/* image src is hard coded to help test the appearance */}
                 <i className={this.state.picture} style={{ fontSize: "50px", maxHeight: "35%", maxWidth: "50%", margin: "5% 5% 0% 5%",  }} ></i>
                 <h1 id="current-temp " style={{ textAlign: "center", fontSize: 36, margin: "5% 5% 0% 5%", padding: ".25em", float: "right", maxWidth: "50%" }}> {this.state.temp} &deg;F</h1>
                 <h2 id="condition" style={{ textAlign: "left", margin: "5%" }}> {this.state.condition} </h2>
