@@ -291,11 +291,19 @@ class Main extends Component {
           Add Widgets
         </Button> */}
 
-        <DropdownButton className="myBtn" title="Add Widgets">
+        <DropdownButton 
+          className="myBtn" 
+          title="+" 
+          noCaret
+          style={{
+            borderRadius: "50%", 
+            height: "36px", 
+            width: "36px",
+            margin: ".5em"}}>
           <MenuItem
             eventKey="1"
             value="WeatherAPI"
-            onClick={this.handleWidgetAdd}
+            onClick={ this.handleWidgetAdd }
           >
             Weather
           </MenuItem>

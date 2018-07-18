@@ -86,8 +86,8 @@ export default class Widget extends Component {
                     this.dataPusher();
                     }}
                 bounds={"window"}
-                minWidth={200}
-                minHeight={200}
+                minWidth={250}
+                minHeight={250}
                 lockAspectRatio={false}
                 onResize={(e, direction, ref, delta, position) => {
                     this.setState({
@@ -113,6 +113,7 @@ export default class Widget extends Component {
                         y={this.state.y}
                         id={this.state.activeId}
                         onChange={this.dataPusher}
+
                     />
                 </div>
             </Rnd>
