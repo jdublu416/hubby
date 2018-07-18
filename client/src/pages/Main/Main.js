@@ -96,12 +96,13 @@ class Main extends Component {
   };
 
   componentDidUpdate() {
+
+
     if (this.state.activeId !== this.props.match.params.id) {
       this.setState({
         activeId: this.props.match.params.id
       });
     }
-
     setTimeout(this.changeSettings(this.props.match.params.id), 1000);
   }
 
@@ -285,10 +286,7 @@ class Main extends Component {
 
   render() {
     return (
-      <div
-        className="back"
-        style={{ backgroundColor: "grey", position: "relative" }}
-      >
+      <div>
         {this.state.activeWidgets.map((item, i) => (
           <Widget
             handleWidgetDelete={this.handleWidgetDelete}
@@ -398,7 +396,7 @@ class Main extends Component {
           </MenuItem>
 
           <MenuItem
-            eventKey="3"
+            eventKey="4"
             value="WorldClock"
             onClick={this.handleWidgetAdd}
           >
@@ -406,7 +404,7 @@ class Main extends Component {
           </MenuItem>
 
           <MenuItem
-            eventKey="3"
+            eventKey="5"
             value="TrafficReport"
             onClick={this.handleWidgetAdd}
           >

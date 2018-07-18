@@ -16,7 +16,7 @@ const TwitterWidget = props => (
                 username: 'neiltyson',
                 height: 500
             }}
-            onLoad={() => console.log('Timeline is loaded!')}
+            onLoad={() => console.log('tweet tweet mother lover')}
         />
         {/* <a class="twitter-timeline"
                     href="https://twitter.com/neiltyson?ref_src=twsrc%5Etfw"
