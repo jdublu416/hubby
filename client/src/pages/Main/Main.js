@@ -9,9 +9,9 @@ import TwitterWidget from "../../components/TwitterWidget";
 import "./Main.css";
 import API from "../../util/API";
 import { DropdownButton, MenuItem } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Main extends Component {
-
   constructor(props) {
     super(props);
     console.log(props.match.params);
@@ -103,9 +103,7 @@ class Main extends Component {
         activeId: this.props.match.params.id
       });
     }
-    setTimeout(
-      this.changeSettings(this.props.match.params.id), 1000
-    )
+    setTimeout(this.changeSettings(this.props.match.params.id), 1000);
   }
 
   handleWidgetAdd = event => {
@@ -214,7 +212,7 @@ class Main extends Component {
           trafficReportHeight: res.data[0].trafficReportHeight,
           trafficReportWidth: res.data[0].trafficReportWidth,
           trafficReportX: res.data[0].trafficReportX,
-          trafficReportY: res.data[0].trafficReportY,
+          trafficReportY: res.data[0].trafficReportY
         };
         console.log("setting new state...");
         this.setState({ ...newState });
@@ -245,7 +243,6 @@ class Main extends Component {
   };
 
   changeSettings = activeId => {
-
     API.updateUserData(activeId, {
       $set: {
         activeWidgetsString: this.state.activeWidgetsString,
@@ -268,10 +265,23 @@ class Main extends Component {
         trafficReportWidth: this.state.trafficReportWidth,
         trafficReportHeight: this.state.trafficReportHeight,
         trafficReportX: this.state.trafficReportX,
-        trafficReportY: this.state.trafficReportY,
+        trafficReportY: this.state.trafficReportY
       }
-    })
-      .catch(err => console.log(err));
+    }).catch(err => console.log(err));
+  };
+
+  handleWidgetDelete = event => {
+    const widgetString = event.target.getAttribute("value");
+    const widget = this.handleWidgetString(widgetString);
+    console.log(widget);
+  };
+
+  handleWidgetString = widgetString => {
+    switch (widgetString) {
+      case "WeatherAPI":
+        return WeatherAPI;
+        break;
+    }
   };
 
   render() {
@@ -279,6 +289,7 @@ class Main extends Component {
       <div>
         {this.state.activeWidgets.map((item, i) => (
           <Widget
+            handleWidgetDelete={this.handleWidgetDelete}
             key={i}
             type={this.state.activeWidgets[i]}
             thisWidget={
@@ -349,21 +360,9 @@ class Main extends Component {
             draggable={this.state.staticMode}
             resizable={this.state.staticMode == true ? false : true}
             changeHandler={this.widgetOnChangeHandler}
+            value="test2"
           />
         ))}
-        {/* <Button
-          className="myBtn"
-          value={this.state.staticMode === false ? true : false}
-          onClick={this.handleBtnClick}
-        >
-          Toggle
-        </Button> */}
-        <Button className="myBtn" onClick={this.handleBtnClick}>
-          Save Settings
-        </Button>
-        {/* <Button className="myBtn" onClick={this.handleBtnClick}>
-          Add Widgets
-        </Button> */}
 
         <DropdownButton
           className="myBtn"
@@ -374,8 +373,9 @@ class Main extends Component {
             height: "36px",
             width: "36px",
             margin: ".5em",
-            boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
-          }}>
+            boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
+          }}
+        >
           <MenuItem
             eventKey="1"
             value="WeatherAPI"
@@ -395,14 +395,25 @@ class Main extends Component {
             Twitter
           </MenuItem>
 
-          <MenuItem eventKey="3" value="WorldClock" onClick={this.handleWidgetAdd}>
+          <MenuItem
+            eventKey="4"
+            value="WorldClock"
+            onClick={this.handleWidgetAdd}
+          >
             World Clock
           </MenuItem>
 
-          <MenuItem eventKey="3" value="TrafficReport" onClick={this.handleWidgetAdd}>
+          <MenuItem
+            eventKey="5"
+            value="TrafficReport"
+            onClick={this.handleWidgetAdd}
+          >
             Traffic Report
           </MenuItem>
         </DropdownButton>
+        <Link to="/">
+          <Button className="myBtn logout">Logout</Button>
+        </Link>
       </div>
     );
   }
