@@ -19,7 +19,11 @@ const userSchema = new Schema({
   calendarHeight: {type: Number},
   calendarX: {type: Number},
   calendarY: {type: Number},
-  
+  worldClockWidth: {type: Number},
+  worldClockHeight: {type: Number},
+  worldClockX: {type: Number},
+  worldClockY: {type: Number},
+
 });
 
 const User = mongoose.model("User", userSchema);

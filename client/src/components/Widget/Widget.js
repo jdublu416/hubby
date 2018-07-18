@@ -57,7 +57,18 @@ export default class Widget extends Component {
                 calendarY: this.state.y,
             }
             console.log("inside widget calender")
-        } console.log("no match")
+        
+        } else if (this.props.thisWidget === "WorldClock") {
+            data = {
+                worldClockHeight: this.state.height,
+                worldClockWidth: this.state.width,
+                worldClockX: this.state.x,
+                worldClockY: this.state.y,
+            }
+            console.log("inside widget calender")
+        } else {
+        console.log("no match")
+    }
         console.log("before change handles: " + data.CalendarX)
         this.props.changeHandler(data);
     }
