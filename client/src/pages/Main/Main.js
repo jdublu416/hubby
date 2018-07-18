@@ -96,13 +96,16 @@ class Main extends Component {
   };
 
   componentDidUpdate() {
+
+
     if (this.state.activeId !== this.props.match.params.id) {
       this.setState({
         activeId: this.props.match.params.id
       });
     }
-
-    this.changeSettings(this.props.match.params.id);
+    setTimeout(
+      this.changeSettings(this.props.match.params.id), 1000
+    )
   }
 
   handleWidgetAdd = event => {
@@ -273,10 +276,7 @@ class Main extends Component {
 
   render() {
     return (
-      <div
-        className="back"
-        style={{ backgroundColor: "grey", position: "relative" }}
-      >
+      <div>
         {this.state.activeWidgets.map((item, i) => (
           <Widget
             key={i}
@@ -291,8 +291,8 @@ class Main extends Component {
                     : i === this.state.activeWidgets.indexOf(WorldClock)
                       ? "WorldClock"
                       : i === this.state.activeWidgets.indexOf(TrafficReport)
-                      ? "TrafficReport"
-                      : null
+                        ? "TrafficReport"
+                        : null
             }
             height={
               i === this.state.activeWidgets.indexOf(WeatherAPI)
@@ -304,8 +304,8 @@ class Main extends Component {
                     : i === this.state.activeWidgets.indexOf(WorldClock)
                       ? this.state.worldClockHeight
                       : i === this.state.activeWidgets.indexOf(TrafficReport)
-                      ? this.state.trafficReportHeight
-                      : null
+                        ? this.state.trafficReportHeight
+                        : null
             }
             width={
               i === this.state.activeWidgets.indexOf(WeatherAPI)
@@ -317,8 +317,8 @@ class Main extends Component {
                     : i === this.state.activeWidgets.indexOf(WorldClock)
                       ? this.state.worldClockWidth
                       : i === this.state.activeWidgets.indexOf(TrafficReport)
-                      ? this.state.trafficReportWidth
-                      : null
+                        ? this.state.trafficReportWidth
+                        : null
             }
             x={
               i === this.state.activeWidgets.indexOf(WeatherAPI)
@@ -330,8 +330,8 @@ class Main extends Component {
                     : i === this.state.activeWidgets.indexOf(WorldClock)
                       ? this.state.worldClockX
                       : i === this.state.activeWidgets.indexOf(TrafficReport)
-                      ? this.state.trafficReportX
-                      : null
+                        ? this.state.trafficReportX
+                        : null
             }
             y={
               i === this.state.activeWidgets.indexOf(WeatherAPI)
@@ -343,8 +343,8 @@ class Main extends Component {
                     : i === this.state.activeWidgets.indexOf(WorldClock)
                       ? this.state.worldClockY
                       : i === this.state.activeWidgets.indexOf(TrafficReport)
-                      ? this.state.trafficReportY
-                      : null
+                        ? this.state.trafficReportY
+                        : null
             }
             draggable={this.state.staticMode}
             resizable={this.state.staticMode == true ? false : true}
@@ -398,7 +398,7 @@ class Main extends Component {
           <MenuItem eventKey="3" value="WorldClock" onClick={this.handleWidgetAdd}>
             World Clock
           </MenuItem>
-          
+
           <MenuItem eventKey="3" value="TrafficReport" onClick={this.handleWidgetAdd}>
             Traffic Report
           </MenuItem>

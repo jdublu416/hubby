@@ -5,7 +5,7 @@ const weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=imperi
 
 const weatherApiKey = ",us&appid=bd0d3906d4a9c29f579ad1a5dd40d33c";
 const twitterURL = "https://api.twitter.com/1.1/search/tweets.json?q=from%3ANasa%20OR%20%23nasa"
-const trafficURL = "http://dev.virtualearth.net/REST/v1/Traffic/Incidents/37,78,38,77?key="
+const trafficURL = "http://dev.virtualearth.net/REST/v1/Traffic/Incidents/37,-78,38,-77?key="
  const bingKey = "AhHTZphhGOw6indf7mFv4IgdS7-2PrRsSond5CREiGFgPrj6gcVzkSFkKfSXpwTF"
 // const weatherQuery = "23060";
 
