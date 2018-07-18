@@ -46,13 +46,13 @@ class Main extends Component {
 
   componentDidMount = () => {
     console.log("on init :" + this.state);
-    setTimeout(
-      this.setState({
-        activeId: this.props.match.params.id
-      }),
-      500
-    );
-    this.loadUserSettings();
+    // setTimeout(
+    this.setState({
+      activeId: this.props.match.params.id
+    }),
+      // 500
+      // );
+      this.loadUserSettings();
   };
 
   handleWidgetLoad = () => {
@@ -96,8 +96,6 @@ class Main extends Component {
   };
 
   componentDidUpdate() {
-
-
     if (this.state.activeId !== this.props.match.params.id) {
       this.setState({
         activeId: this.props.match.params.id
@@ -233,8 +231,6 @@ class Main extends Component {
     API.getUserDataById;
   };
 
-  newData;
-
   widgetOnChangeHandler = event => {
     console.log("widget change handled: " + event);
     const newData = event;
@@ -274,14 +270,39 @@ class Main extends Component {
     const widgetString = event.target.getAttribute("value");
     const widget = this.handleWidgetString(widgetString);
     console.log(widget);
+    this.handleWidgetDeleteUpdate(widget);
   };
 
   handleWidgetString = widgetString => {
     switch (widgetString) {
       case "WeatherAPI":
         return WeatherAPI;
+      case "TwitterWidget":
+        return TwitterWidget;
+      case "Calendar":
+        return Calendar;
+      case "WorldClock":
+        return WorldClock;
+      case "TrafficReport":
+        return TrafficReport;
         break;
     }
+  };
+
+  handleWidgetDeleteUpdate = widget => {
+    this.changeSettings;
+    let emperorsNewWidgets = [...this.state.activeWidgets];
+    let emperorsNewWidgetsString = [...this.state.activeWidgetsString];
+    emperorsNewWidgets.splice(emperorsNewWidgets.indexOf(widget), 1);
+    emperorsNewWidgetsString.splice(
+      emperorsNewWidgetsString.indexOf("WeatherAPI"),
+      1
+    );
+    this.setState({
+      activeWidgets: emperorsNewWidgets,
+      activeWidgetsString: emperorsNewWidgetsString
+    });
+    this.forceUpdate();
   };
 
   render() {
