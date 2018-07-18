@@ -57,7 +57,26 @@ export default class Widget extends Component {
                 calendarY: this.state.y,
             }
             console.log("inside widget calender")
-        } console.log("no match")
+        
+        } else if (this.props.thisWidget === "WorldClock") {
+            data = {
+                worldClockHeight: this.state.height,
+                worldClockWidth: this.state.width,
+                worldClockX: this.state.x,
+                worldClockY: this.state.y,
+            }
+            console.log("inside widget calender")
+        } else if (this.props.thisWidget === "TrafficReport") {
+            data = {
+                trafficReportHeight: this.state.height,
+                trafficReportWidth: this.state.width,
+                trafficReportX: this.state.x,
+                trafficReportY: this.state.y,
+            }
+            console.log("inside widget calender")
+        } else {
+        console.log("no match")
+    }
         console.log("before change handles: " + data.CalendarX)
         this.props.changeHandler(data);
     }
@@ -86,8 +105,8 @@ export default class Widget extends Component {
                     this.dataPusher();
                     }}
                 bounds={"window"}
-                minWidth={200}
-                minHeight={200}
+                minWidth={250}
+                minHeight={250}
                 lockAspectRatio={false}
                 onResize={(e, direction, ref, delta, position) => {
                     this.setState({
@@ -113,6 +132,7 @@ export default class Widget extends Component {
                         y={this.state.y}
                         id={this.state.activeId}
                         onChange={this.dataPusher}
+
                     />
                 </div>
             </Rnd>

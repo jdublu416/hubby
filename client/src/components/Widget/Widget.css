@@ -3,8 +3,8 @@
     position: relative;
     bottom: 0px;
     color: #52c8fa;
-    background-color: #4a4744;
-    /* background-color: rgba(0,0,0,0.23); */
+    /* background-color: #4a4744; */
+    background-color: rgba(0,0,0,0.23);
     border-radius: 5%;
     overflow: hidden;
     min-width: 250px;
@@ -28,8 +28,8 @@ p {
 
 
 
-.react-calendar div{
-    /* background-color: rgba(0,0,0,0.23); */
-    background-color: #4a4744;
+.react-calendar{
+    background-color: rgba(0,0,0,0) !important;
+    border: 0 solid rgba(0,0,0,0) !important;
 
   }

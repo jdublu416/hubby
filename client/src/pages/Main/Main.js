@@ -1,18 +1,17 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-
-// import Settings from "../../components/Settings";
 import WeatherAPI from "../../components/WeatherAPI";
 import Button from "../../components/Button";
 import Widget from "../../components/Widget";
 import Calendar from "react-calendar";
+import WorldClock from "../../components/WorldClock";
+import TrafficReport from "../../components/TrafficReport";
 import TwitterWidget from "../../components/TwitterWidget";
 import "./Main.css";
 import API from "../../util/API";
 import { DropdownButton, MenuItem } from "react-bootstrap";
 
 class Main extends Component {
-  // Weather = WeatherAPI;
+
   constructor(props) {
     super(props);
     console.log(props.match.params);
@@ -34,8 +33,17 @@ class Main extends Component {
     calendarWidth: 250,
     calendarX: 250,
     calendarY: 250,
+    worldClockHeight: 250,
+    worldClockWidth: 250,
+    worldClockX: 250,
+    worldClockY: 250,
+    trafficReportHeight: 250,
+    trafficReportWidth: 250,
+    trafficReportX: 250,
+    trafficReportY: 250,
     data: {}
   };
+
   componentDidMount = () => {
     console.log("on init :" + this.state);
     setTimeout(
@@ -45,7 +53,6 @@ class Main extends Component {
       500
     );
     this.loadUserSettings();
-    // this.changeSettings(this.props.match.params.id);
   };
 
   handleWidgetLoad = () => {
@@ -66,6 +73,20 @@ class Main extends Component {
     if (this.state.activeWidgetsString.indexOf("Calendar") >= 0) {
       let newActiveWidgets = [...this.state.activeWidgets];
       newActiveWidgets.push(Calendar);
+      this.setState({
+        activeWidgets: newActiveWidgets
+      });
+    }
+    if (this.state.activeWidgetsString.indexOf("WorldClock") >= 0) {
+      let newActiveWidgets = [...this.state.activeWidgets];
+      newActiveWidgets.push(WorldClock);
+      this.setState({
+        activeWidgets: newActiveWidgets
+      });
+    }
+    if (this.state.activeWidgetsString.indexOf("TrafficReport") >= 0) {
+      let newActiveWidgets = [...this.state.activeWidgets];
+      newActiveWidgets.push(TrafficReport);
       this.setState({
         activeWidgets: newActiveWidgets
       });
@@ -126,6 +147,32 @@ class Main extends Component {
         activeWidgets: newActiveWidgets,
         activeWidgetsString: newWidgetsString
       });
+    } else if (
+      val === "WorldClock" &&
+      this.state.activeWidgets.indexOf(WorldClock) < 0
+    ) {
+      let newActiveWidgets = [...this.state.activeWidgets];
+      let newWidgetsString = [...this.state.activeWidgetsString];
+      newActiveWidgets.push(WorldClock);
+      newWidgetsString.push("WorldClock");
+      console.log(newActiveWidgets);
+      this.setState({
+        activeWidgets: newActiveWidgets,
+        activeWidgetsString: newWidgetsString
+      });
+    } else if (
+      val === "TrafficReport" &&
+      this.state.activeWidgets.indexOf(TrafficReport) < 0
+    ) {
+      let newActiveWidgets = [...this.state.activeWidgets];
+      let newWidgetsString = [...this.state.activeWidgetsString];
+      newActiveWidgets.push(TrafficReport);
+      newWidgetsString.push("TrafficReport");
+      console.log(newActiveWidgets);
+      this.setState({
+        activeWidgets: newActiveWidgets,
+        activeWidgetsString: newWidgetsString
+      });
     }
   };
 
@@ -138,11 +185,6 @@ class Main extends Component {
     console.log(this.state.staticMode);
   };
 
-  //   loadUserSettings = (res) => {
-  //  console.log(res);
-  //      this.setState({ userData: res.data });
-  //      this.props.history.push('/Main/:id/' + res.data._id);
-  //   }
   loadUserSettings = event => {
     console.log("loading user settings...");
     API.getUserDataById(this.state.activeId)
@@ -161,7 +203,15 @@ class Main extends Component {
           calendarHeight: res.data[0].calendarHeight,
           calendarWidth: res.data[0].calendarWidth,
           calendarX: res.data[0].calendarX,
-          calendarY: res.data[0].calendarY
+          calendarY: res.data[0].calendarY,
+          worldClockHeight: res.data[0].worldClockHeight,
+          worldClockWidth: res.data[0].worldClockWidth,
+          worldClockX: res.data[0].worldClockX,
+          worldClockY: res.data[0].worldClockY,
+          trafficReportHeight: res.data[0].trafficReportHeight,
+          trafficReportWidth: res.data[0].trafficReportWidth,
+          trafficReportX: res.data[0].trafficReportX,
+          trafficReportY: res.data[0].trafficReportY,
         };
         console.log("setting new state...");
         this.setState({ ...newState });
@@ -169,7 +219,6 @@ class Main extends Component {
         console.log(this.state);
       })
       .catch(err => console.log(err));
-    // this.setState({ userData: res.data });
   };
 
   arrayPersistChecker = () => {
@@ -193,7 +242,6 @@ class Main extends Component {
   };
 
   changeSettings = activeId => {
-    // console.log("cha cha cha changing and id: " + activeId);
 
     API.updateUserData(activeId, {
       $set: {
@@ -209,11 +257,17 @@ class Main extends Component {
         calendarWidth: this.state.calendarWidth,
         calendarHeight: this.state.calendarHeight,
         calendarX: this.state.calendarX,
-        calendarY: this.state.calendarY
+        calendarY: this.state.calendarY,
+        worldClockWidth: this.state.worldClockWidth,
+        worldClockHeight: this.state.worldClockHeight,
+        worldClockX: this.state.worldClockX,
+        worldClockY: this.state.worldClockY,
+        trafficReportWidth: this.state.trafficReportWidth,
+        trafficReportHeight: this.state.trafficReportHeight,
+        trafficReportX: this.state.trafficReportX,
+        trafficReportY: this.state.trafficReportY,
       }
     })
-      // .then(console.log("through changesettings call"))
-      // .then(activeId => this.props.history.push("/Main/:id"))
       .catch(err => console.log(err));
   };
 
@@ -234,7 +288,11 @@ class Main extends Component {
                   ? "TwitterWidget"
                   : i === this.state.activeWidgets.indexOf(Calendar)
                     ? "Calendar"
-                    : null
+                    : i === this.state.activeWidgets.indexOf(WorldClock)
+                      ? "WorldClock"
+                      : i === this.state.activeWidgets.indexOf(TrafficReport)
+                      ? "TrafficReport"
+                      : null
             }
             height={
               i === this.state.activeWidgets.indexOf(WeatherAPI)
@@ -243,7 +301,11 @@ class Main extends Component {
                   ? this.state.twitterHeight
                   : i === this.state.activeWidgets.indexOf(Calendar)
                     ? this.state.calendarHeight
-                    : null
+                    : i === this.state.activeWidgets.indexOf(WorldClock)
+                      ? this.state.worldClockHeight
+                      : i === this.state.activeWidgets.indexOf(TrafficReport)
+                      ? this.state.trafficReportHeight
+                      : null
             }
             width={
               i === this.state.activeWidgets.indexOf(WeatherAPI)
@@ -252,7 +314,11 @@ class Main extends Component {
                   ? this.state.twitterWidth
                   : i === this.state.activeWidgets.indexOf(Calendar)
                     ? this.state.calendarWidth
-                    : null
+                    : i === this.state.activeWidgets.indexOf(WorldClock)
+                      ? this.state.worldClockWidth
+                      : i === this.state.activeWidgets.indexOf(TrafficReport)
+                      ? this.state.trafficReportWidth
+                      : null
             }
             x={
               i === this.state.activeWidgets.indexOf(WeatherAPI)
@@ -261,7 +327,11 @@ class Main extends Component {
                   ? this.state.twitterX
                   : i === this.state.activeWidgets.indexOf(Calendar)
                     ? this.state.calendarX
-                    : null
+                    : i === this.state.activeWidgets.indexOf(WorldClock)
+                      ? this.state.worldClockX
+                      : i === this.state.activeWidgets.indexOf(TrafficReport)
+                      ? this.state.trafficReportX
+                      : null
             }
             y={
               i === this.state.activeWidgets.indexOf(WeatherAPI)
@@ -270,7 +340,11 @@ class Main extends Component {
                   ? this.state.twitterY
                   : i === this.state.activeWidgets.indexOf(Calendar)
                     ? this.state.calendarY
-                    : null
+                    : i === this.state.activeWidgets.indexOf(WorldClock)
+                      ? this.state.worldClockY
+                      : i === this.state.activeWidgets.indexOf(TrafficReport)
+                      ? this.state.trafficReportY
+                      : null
             }
             draggable={this.state.staticMode}
             resizable={this.state.staticMode == true ? false : true}
@@ -291,7 +365,17 @@ class Main extends Component {
           Add Widgets
         </Button> */}
 
-        <DropdownButton className="myBtn" title="Add Widgets">
+        <DropdownButton
+          className="myBtn"
+          title="+"
+          noCaret
+          style={{
+            borderRadius: "50%",
+            height: "36px",
+            width: "36px",
+            margin: ".5em",
+            boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
+          }}>
           <MenuItem
             eventKey="1"
             value="WeatherAPI"
@@ -309,6 +393,14 @@ class Main extends Component {
 
           <MenuItem eventKey="3" value="Twitter" onClick={this.handleWidgetAdd}>
             Twitter
+          </MenuItem>
+
+          <MenuItem eventKey="3" value="WorldClock" onClick={this.handleWidgetAdd}>
+            World Clock
+          </MenuItem>
+          
+          <MenuItem eventKey="3" value="TrafficReport" onClick={this.handleWidgetAdd}>
+            Traffic Report
           </MenuItem>
         </DropdownButton>
       </div>
