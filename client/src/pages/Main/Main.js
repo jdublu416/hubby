@@ -4,6 +4,7 @@ import Button from "../../components/Button";
 import Widget from "../../components/Widget";
 import Calendar from "react-calendar";
 import WorldClock from "../../components/WorldClock";
+import TrafficReport from "../../components/TrafficReport";
 import TwitterWidget from "../../components/TwitterWidget";
 import "./Main.css";
 import API from "../../util/API";
@@ -36,6 +37,10 @@ class Main extends Component {
     worldClockWidth: 250,
     worldClockX: 250,
     worldClockY: 250,
+    trafficReportHeight: 250,
+    trafficReportWidth: 250,
+    trafficReportX: 250,
+    trafficReportY: 250,
     data: {}
   };
 
@@ -75,6 +80,13 @@ class Main extends Component {
     if (this.state.activeWidgetsString.indexOf("WorldClock") >= 0) {
       let newActiveWidgets = [...this.state.activeWidgets];
       newActiveWidgets.push(WorldClock);
+      this.setState({
+        activeWidgets: newActiveWidgets
+      });
+    }
+    if (this.state.activeWidgetsString.indexOf("TrafficReport") >= 0) {
+      let newActiveWidgets = [...this.state.activeWidgets];
+      newActiveWidgets.push(TrafficReport);
       this.setState({
         activeWidgets: newActiveWidgets
       });
@@ -148,6 +160,19 @@ class Main extends Component {
         activeWidgets: newActiveWidgets,
         activeWidgetsString: newWidgetsString
       });
+    } else if (
+      val === "TrafficReport" &&
+      this.state.activeWidgets.indexOf(TrafficReport) < 0
+    ) {
+      let newActiveWidgets = [...this.state.activeWidgets];
+      let newWidgetsString = [...this.state.activeWidgetsString];
+      newActiveWidgets.push(TrafficReport);
+      newWidgetsString.push("TrafficReport");
+      console.log(newActiveWidgets);
+      this.setState({
+        activeWidgets: newActiveWidgets,
+        activeWidgetsString: newWidgetsString
+      });
     }
   };
 
@@ -183,6 +208,10 @@ class Main extends Component {
           worldClockWidth: res.data[0].worldClockWidth,
           worldClockX: res.data[0].worldClockX,
           worldClockY: res.data[0].worldClockY,
+          trafficReportHeight: res.data[0].trafficReportHeight,
+          trafficReportWidth: res.data[0].trafficReportWidth,
+          trafficReportX: res.data[0].trafficReportX,
+          trafficReportY: res.data[0].trafficReportY,
         };
         console.log("setting new state...");
         this.setState({ ...newState });
@@ -233,6 +262,10 @@ class Main extends Component {
         worldClockHeight: this.state.worldClockHeight,
         worldClockX: this.state.worldClockX,
         worldClockY: this.state.worldClockY,
+        trafficReportWidth: this.state.trafficReportWidth,
+        trafficReportHeight: this.state.trafficReportHeight,
+        trafficReportX: this.state.trafficReportX,
+        trafficReportY: this.state.trafficReportY,
       }
     })
       .catch(err => console.log(err));
@@ -257,6 +290,8 @@ class Main extends Component {
                     ? "Calendar"
                     : i === this.state.activeWidgets.indexOf(WorldClock)
                       ? "WorldClock"
+                      : i === this.state.activeWidgets.indexOf(TrafficReport)
+                      ? "TrafficReport"
                       : null
             }
             height={
@@ -268,6 +303,8 @@ class Main extends Component {
                     ? this.state.calendarHeight
                     : i === this.state.activeWidgets.indexOf(WorldClock)
                       ? this.state.worldClockHeight
+                      : i === this.state.activeWidgets.indexOf(TrafficReport)
+                      ? this.state.trafficReportHeight
                       : null
             }
             width={
@@ -279,6 +316,8 @@ class Main extends Component {
                     ? this.state.calendarWidth
                     : i === this.state.activeWidgets.indexOf(WorldClock)
                       ? this.state.worldClockWidth
+                      : i === this.state.activeWidgets.indexOf(TrafficReport)
+                      ? this.state.trafficReportWidth
                       : null
             }
             x={
@@ -290,6 +329,8 @@ class Main extends Component {
                     ? this.state.calendarX
                     : i === this.state.activeWidgets.indexOf(WorldClock)
                       ? this.state.worldClockX
+                      : i === this.state.activeWidgets.indexOf(TrafficReport)
+                      ? this.state.trafficReportX
                       : null
             }
             y={
@@ -301,6 +342,8 @@ class Main extends Component {
                     ? this.state.calendarY
                     : i === this.state.activeWidgets.indexOf(WorldClock)
                       ? this.state.worldClockY
+                      : i === this.state.activeWidgets.indexOf(TrafficReport)
+                      ? this.state.trafficReportY
                       : null
             }
             draggable={this.state.staticMode}
@@ -354,6 +397,10 @@ class Main extends Component {
 
           <MenuItem eventKey="3" value="WorldClock" onClick={this.handleWidgetAdd}>
             World Clock
+          </MenuItem>
+          
+          <MenuItem eventKey="3" value="TrafficReport" onClick={this.handleWidgetAdd}>
+            Traffic Report
           </MenuItem>
         </DropdownButton>
       </div>

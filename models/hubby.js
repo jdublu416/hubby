@@ -23,7 +23,10 @@ const userSchema = new Schema({
   worldClockHeight: {type: Number},
   worldClockX: {type: Number},
   worldClockY: {type: Number},
-
+  trafficReportWidth: {type: Number},
+  trafficReportHeight: {type: Number},
+  trafficReportX: {type: Number},
+  trafficReportY: {type: Number},
 });
 
 const User = mongoose.model("User", userSchema);

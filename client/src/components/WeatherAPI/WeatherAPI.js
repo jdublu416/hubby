@@ -70,7 +70,7 @@ export default class WeatherAPI extends Component {
             newStatePicture = "wi wi-rain";
             break;
 
-            case "clear" || "Sunny":
+            case "Clear" || "Sunny":
             newStatePicture = "wi wi-day-sunny";
             break;
 

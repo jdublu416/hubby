@@ -66,6 +66,14 @@ export default class Widget extends Component {
                 worldClockY: this.state.y,
             }
             console.log("inside widget calender")
+        } else if (this.props.thisWidget === "TrafficReport") {
+            data = {
+                trafficReportHeight: this.state.height,
+                trafficReportWidth: this.state.width,
+                trafficReportX: this.state.x,
+                trafficReportY: this.state.y,
+            }
+            console.log("inside widget calender")
         } else {
         console.log("no match")
     }
