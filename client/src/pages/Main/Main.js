@@ -291,13 +291,29 @@ class Main extends Component {
     }
   };
 
+  handleWidgetNonString = widget => {
+    switch (widget) {
+      case WeatherAPI:
+        return "WeatherAPI";
+      case TwitterWidget:
+        return "TwitterWidget";
+      case Calendar:
+        return "Calendar";
+      case WorldClock:
+        return "WorldClock";
+      case TrafficReport:
+        return "TrafficReport";
+        break;
+    }
+  };
+
   handleWidgetDeleteUpdate = widget => {
     this.changeSettings;
     let emperorsNewWidgets = [...this.state.activeWidgets];
     let emperorsNewWidgetsString = [...this.state.activeWidgetsString];
     emperorsNewWidgets.splice(emperorsNewWidgets.indexOf(widget), 1);
     emperorsNewWidgetsString.splice(
-      emperorsNewWidgetsString.indexOf("WeatherAPI"),
+      emperorsNewWidgetsString.indexOf(this.handleWidgetNonString(widget)),
       1
     );
     this.setState({
