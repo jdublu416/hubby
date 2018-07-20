@@ -1,6 +1,7 @@
 import "./Widget.css";
 import React, { Component } from 'react'
 import Rnd from "react-rnd";
+import API from "../../util/API";
 // import WeatherAPI from "../WeatherAPI";
 // import Calendar from "react-calendar";
 
@@ -8,15 +9,30 @@ import Rnd from "react-rnd";
 
 export default class Widget extends Component {
     state = {
-        width: 300,
-        height: 200,
-        x: 100,
-        y: 100,
+        
+        width: 305,
+        height: 305,
+        x: (window.innerWidth / 3) ,
+        y: (window.innerHeight / 3) ,
+        
     }
 
+    
 
 
-    render() {
+    saveData = (width, height) => {
+
+        API.updateUserData({
+          username: width,
+          password: height,
+
+        })
+          .then(console.log("saved"))
+          .catch(err => console.log(err));
+      };
+
+    render = props => {
+
         return (
 
                 <Rnd
@@ -26,9 +42,9 @@ export default class Widget extends Component {
                     position={{ x: this.state.x, y: this.state.y }}
                     onDragStop={(e, d) => { this.setState({ x: d.x, y: d.y }) }}
                     bounds={ "window" }
-                    minWidth={ 300 }
+                    minWidth={ 200 }
                     minHeight={ 200 }
-                    lockAspectRatio={ true }
+                    lockAspectRatio={ false }
                     onResize={(e, direction, ref, delta, position) => {
                         this.setState({
                             width: ref.offsetWidth,
@@ -36,10 +52,20 @@ export default class Widget extends Component {
                             ...position,
                         });
                     }}
+                    disableDragging={this.props.draggable}
+                    
                 >
                     <div className="widget">
                         < this.props.type 
-                            />
+                         style={{  
+                            width: this.state.width, 
+                            height: this.state.height}}
+                            width={this.state.width}
+                            height={this.state.height}
+                            x={this.state.x}
+                            y={this.state.y}
+                            id={this.state.activeId}
+                             />
                     </div>
                 </Rnd>
         )
